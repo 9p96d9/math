@@ -214,10 +214,10 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 <div class="screen" id="m10">
   <div class="top"><button>← もどる</button><h2>⚪ 円と円周率</h2></div>
   <p class="hint">円を ゆびで ころがしてみよう。1しゅうで どれだけ すすむ？</p>
-  <div class="panel"><svg id="m10svg" viewBox="0 0 600 220" style="width:100%;display:block;touch-action:none"></svg></div>
+  <div class="panel"><svg id="m10svg" viewBox="0 0 600 245" style="width:100%;display:block;touch-action:none"></svg></div>
   <div id="m10eq" style="text-align:center;font-size:1.3rem;font-weight:bold;color:#7A5A38;min-height:1.6em;margin-bottom:10px"></div>
   <div class="panel">
-    <div class="ctl"><label>⚪ 直径</label><input type="range" id="m10d" min="4" max="12" step="1" value="8"><b><span id="m10dv">8</span>cm</b></div>
+    <div class="ctl"><label>⚪ 直径</label><input type="range" id="m10d" min="6" max="12" step="2" value="8"><b><span id="m10dv">8</span>cm</b></div>
     <div class="tgl"><button class="bbtn" id="m10roll">▶ ころがす</button><button class="bbtn off" id="m10rst">↺ もどす</button></div>
   </div>
 </div>
@@ -269,6 +269,7 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
   <p class="hint">あかい ● を うごかして 形を かえてみよう。かどの和は…？</p>
   <div class="panel"><svg id="m14svg" viewBox="0 0 600 320" style="width:100%;display:block;touch-action:none"></svg></div>
   <div class="eq" id="m14sum" style="font-size:1.6rem"></div>
+  <div class="tgl" style="margin-top:10px"><button class="bbtn" id="m14tear">✂️ ちぎって ならべる</button></div>
   <div class="nbtn"><button id="m14m">‹</button><span id="m14n">5かく</span><button id="m14p">›</button></div>
 </div>
 
@@ -283,10 +284,11 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 
 <div class="screen" id="m17">
   <div class="top"><button>← もどる</button><h2>🧱 面積と体積</h2></div>
-  <p class="hint">つみきを ならべて つんでみよう。ぜんぶで なんこ？</p>
+  <p class="hint">つみきや じめんを タッチして、つんだり けずったり してみよう</p>
   <div class="panel"><svg id="m17svg" viewBox="0 0 600 320" style="width:100%;display:block"></svg></div>
   <div class="eq" id="m17eq" style="font-size:1.6rem"></div>
   <div class="panel" style="margin-top:12px">
+    <div class="tgl"><button class="bbtn" id="m17add">➕ つむ</button><button class="bbtn off" id="m17del">➖ けずる</button></div>
     <div class="ctl"><label>たて（おく）</label><input type="range" id="m17z" min="1" max="4" step="1" value="2"><b><span id="m17zv">2</span>れつ</b></div>
     <div class="ctl"><label>よこ</label><input type="range" id="m17x" min="1" max="4" step="1" value="3"><b><span id="m17xv">3</span>れつ</b></div>
     <div class="ctl"><label>たかさ</label><input type="range" id="m17y" min="1" max="4" step="1" value="1"><b><span id="m17yv">1</span>だん</b></div>
@@ -468,10 +470,10 @@ function c10draw(){
   const r=C.d/2*PXCM,cx=CX0+C.th*r,cy=CY-r;
   const rolled=C.th*C.d/2,ratio=C.d?rolled/C.d:0;
   let h=`<line x1="10" y1="${CY}" x2="590" y2="${CY}" stroke="#8A6A48" stroke-width="3"/>`;
-  h+=`<line x1="${CX0}" y1="${CY+14}" x2="${CX0+C.th*r}" y2="${CY+14}" stroke="#1C7ED6" stroke-width="7" stroke-linecap="round"/>`;
+  if(C.th>0.02)h+=`<line x1="${CX0}" y1="${CY+14}" x2="${CX0+C.th*r}" y2="${CY+14}" stroke="#1C7ED6" stroke-width="7" stroke-linecap="round"/>`;
   for(let k=1;k<=3;k++){const x=CX0+k*C.d*PXCM;if(x<590)h+=`<line x1="${x}" y1="${CY+6}" x2="${x}" y2="${CY+24}" stroke="#8A6A48" stroke-width="2"/><text x="${x}" y="${CY+40}" font-size="12" fill="#8A6A48" text-anchor="middle">直径×${k}</text>`}
   const xp=CX0+3.14159*C.d*PXCM;
-  h+=`<line x1="${xp}" y1="${CY+6}" x2="${xp}" y2="${CY+24}" stroke="#E03131" stroke-width="3"/><text x="${xp}" y="${CY+40}" font-size="12" font-weight="bold" fill="#E03131" text-anchor="middle">×3.14</text>`;
+  h+=`<line x1="${xp}" y1="${CY+6}" x2="${xp}" y2="${CY+36}" stroke="#E03131" stroke-width="3"/><text x="${xp}" y="${CY+56}" font-size="13" font-weight="bold" fill="#E03131" text-anchor="middle">×3.14</text>`;
   h+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#D0EBFF" stroke="#1971C2" stroke-width="4"/>`;
   const px=cx-r*Math.sin(C.th),py=cy+r*Math.cos(C.th);
   h+=`<line x1="${cx}" y1="${cy}" x2="${px}" y2="${py}" stroke="#E03131" stroke-width="3"/><circle cx="${px}" cy="${py}" r="6" fill="#E03131"/>`;
@@ -649,34 +651,53 @@ $("m15rst").onclick=()=>{CK.min=0;m15draw()};
 $("m15qb").onclick=()=>{CK.mode=!CK.mode;$("m15qb").textContent=CK.mode?"🎈 じゆうに あそぶ":"🎯 もんだいを だして";if(CK.mode)ckNewQ();else{CK.q=null;m15draw()}};
 m15draw();
 
-/* m14 図形の角 —— 頂点ドラッグでも内角の和は (n-2)×180° */
-const PG={n:5,pts:[],drag:-1};
+/* m14 図形の角 —— 頂点ドラッグでも内角の和は (n-2)×180°。ちぎって1点にならべる演出つき */
+const PG={n:5,pts:[],drag:-1,tear:0,tt:0,cheer:false};
 function nrm(v){const l=Math.hypot(v[0],v[1])||1;return[v[0]/l,v[1]/l]}
-function pgInit(){PG.pts=[];for(let i=0;i<PG.n;i++){const a=i/PG.n*2*Math.PI-Math.PI/2;PG.pts.push([300+112*Math.cos(a),158+112*Math.sin(a)])}$("m14n").textContent=PG.n+"かく";m14draw()}
+function pgInit(){PG.pts=[];PG.tear=0;PG.tt=0;PG.cheer=false;for(let i=0;i<PG.n;i++){const a=i/PG.n*2*Math.PI-Math.PI/2;PG.pts.push([300+108*Math.cos(a),150+108*Math.sin(a)])}
+  $("m14n").textContent=PG.n+"かく";$("m14tear").style.display=PG.n<=4?"":"none";$("m14tear").textContent="✂️ ちぎって ならべる";m14draw()}
 function m14draw(){
-  const P=PG.pts,n=PG.n;
+  const P=PG.pts,n=PG.n,t=PG.tear;
   let area=0;for(let i=0;i<n;i++){const a=P[i],b=P[(i+1)%n];area+=a[0]*b[1]-b[0]*a[1]}
   const o=area>0?1:-1;
   let h=`<polygon points="${P.map(p=>p.join(",")).join(" ")}" fill="#D7E9F7" stroke="#3E566B" stroke-width="3" stroke-linejoin="round"/>`,sum=0;
+  const W=[];
   for(let i=0;i<n;i++){
     const v=P[i],pr=P[(i-1+n)%n],nx=P[(i+1)%n];
     const u1=nrm([pr[0]-v[0],pr[1]-v[1]]),u2=nrm([nx[0]-v[0],nx[1]-v[1]]);
     let th=Math.atan2(o*(u2[0]*u1[1]-u2[1]*u1[0]),u1[0]*u2[0]+u1[1]*u2[1]);if(th<0)th+=2*Math.PI;
     sum+=th;
-    const a0=Math.atan2(u2[1],u2[0]);let arc="";
-    for(let k=0;k<=16;k++){const a=a0+o*th*k/16;arc+=`${v[0]+22*Math.cos(a)},${v[1]+22*Math.sin(a)} `}
-    h+=`<polygon points="${v[0]},${v[1]} ${arc}" fill="#FFA94D" fill-opacity=".55"/>`;
-    const am=a0+o*th/2;
+    const a0=Math.atan2(u2[1],u2[0]),am=a0+o*th/2;
+    W.push({v,a0,th});
     h+=`<text x="${v[0]+42*Math.cos(am)}" y="${v[1]+42*Math.sin(am)+5}" font-size="15" font-weight="bold" fill="#B4551E" text-anchor="middle">${Math.round(th*180/Math.PI)}°</text>`;
   }
+  if(t>.5){const op=(t-.5)*2,r=22+12*t;
+    if(n===3)h+=`<line x1="150" y1="290" x2="450" y2="290" stroke="#7A5A38" stroke-width="4" opacity="${op}" stroke-linecap="round"/>`;
+    else h+=`<circle cx="300" cy="290" r="${r+4}" fill="none" stroke="#7A5A38" stroke-width="2.5" opacity="${op}" stroke-dasharray="6 6"/>`;
+    h+=`<text x="300" y="${n===3?258:242}" font-size="19" font-weight="bold" fill="#2F9E44" text-anchor="middle" opacity="${op}">${n===3?"ぴったり 一直線！＝180°":"ぐるっと 1しゅう！＝360°"}</text>`;
+  }
+  let prefix=0;
+  W.forEach(w=>{
+    const r=22+12*t;
+    const ta0=o>0?Math.PI+prefix:2*Math.PI-prefix;
+    let dd=ta0-w.a0;dd=((dd+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
+    const phi=(w.a0+dd*t)*180/Math.PI;
+    const x=w.v[0]+(300-w.v[0])*t,y=w.v[1]+(290-w.v[1])*t;
+    let pts="0,0";for(let k=0;k<=16;k++){const a=o*w.th*k/16;pts+=` ${r*Math.cos(a)},${r*Math.sin(a)}`}
+    h+=`<g transform="translate(${x},${y}) rotate(${phi})"><polygon points="${pts}" fill="#FFA94D" fill-opacity=".7" stroke="#B4551E" stroke-width="1.5"/></g>`;
+    prefix+=w.th;
+  });
+  if(t>.99&&!PG.cheer){PG.cheer=true;snd(true)}if(t<.5)PG.cheer=false;
   for(let i=0;i<n;i++)h+=`<circle cx="${P[i][0]}" cy="${P[i][1]}" r="11" fill="#E03131" stroke="#fff" stroke-width="3"/>`;
   $("m14svg").innerHTML=h;
   $("m14sum").innerHTML=`かどの和 ＝ <span style="color:#E8590C">${Math.round(sum*180/Math.PI)}°</span>　いつも おなじ！`;
 }
 function m14xy(e){const rc=$("m14svg").getBoundingClientRect();return[(e.clientX-rc.left)/rc.width*600,(e.clientY-rc.top)/rc.height*320]}
-$("m14svg").onpointerdown=e=>{const[x,y]=m14xy(e);let bi=-1,bd=30;PG.pts.forEach((p,i)=>{const d=Math.hypot(p[0]-x,p[1]-y);if(d<bd){bd=d;bi=i}});PG.drag=bi;if(bi>=0)$("m14svg").setPointerCapture(e.pointerId)};
-$("m14svg").onpointermove=e=>{if(PG.drag<0)return;const[x,y]=m14xy(e);PG.pts[PG.drag]=[Math.max(20,Math.min(580,x)),Math.max(20,Math.min(300,y))];m14draw()};
+$("m14svg").onpointerdown=e=>{if(PG.tear>0.01)return;const[x,y]=m14xy(e);let bi=-1,bd=30;PG.pts.forEach((p,i)=>{const d=Math.hypot(p[0]-x,p[1]-y);if(d<bd){bd=d;bi=i}});PG.drag=bi;if(bi>=0)$("m14svg").setPointerCapture(e.pointerId)};
+$("m14svg").onpointermove=e=>{if(PG.drag<0)return;const[x,y]=m14xy(e);PG.pts[PG.drag]=[Math.max(20,Math.min(580,x)),Math.max(20,Math.min(240,y))];m14draw()};
 $("m14svg").onpointerup=()=>PG.drag=-1;
+$("m14tear").onclick=()=>{PG.tt=PG.tt?0:1;$("m14tear").textContent=PG.tt?"↩️ もとに もどす":"✂️ ちぎって ならべる"};
+setInterval(()=>{if($("m14").style.display!=="block"||Math.abs(PG.tear-PG.tt)<.005)return;PG.tear+=(PG.tt-PG.tear)*.13;if(Math.abs(PG.tear-PG.tt)<.005)PG.tear=PG.tt;m14draw()},30);
 $("m14p").onclick=()=>{if(PG.n<6){PG.n++;pgInit()}};
 $("m14m").onclick=()=>{if(PG.n>3){PG.n--;pgInit()}};
 pgInit();
@@ -711,25 +732,39 @@ $("m16svg").onpointerup=()=>d16=null;
 document.querySelectorAll(".m16s").forEach(b=>b.onclick=()=>{V16.shape=b.dataset.sh;document.querySelectorAll(".m16s").forEach(x=>x.classList.toggle("off",x!==b));m16draw()});
 m16draw();
 
-/* m17 面積と体積 —— 単位つみき(1辺=1)を ならべて つむ */
-const A17={x:3,y:1,z:2},B17v=box3(.5,.5,.5),C17=["#FFA94D","#E8590C","#F08C00","#D9480F","#FFD43B","#B4551E"],RX17=-.5,RY17=.62;
+/* m17 面積と体積 —— 列モデル: じめん/つみきタッチで1こずつ つむ・けずる */
+const A17={x:3,y:1,z:2,mode:1,hg:null},B17v=box3(.5,.5,.5),C17=["#FFA94D","#E8590C","#F08C00","#D9480F","#FFD43B","#B4551E"],RX17=-.5,RY17=.62;
+function m17reset(){A17.hg=[];for(let k=0;k<A17.z;k++){const r=[];for(let i=0;i<A17.x;i++)r.push(A17.y);A17.hg.push(r)}m17draw()}
 function m17draw(){
-  const c=A17.x,h=A17.y,d=A17.z,cubes=[];
-  for(let j=0;j<h;j++)for(let k=0;k<d;k++)for(let i=0;i<c;i++){const ce=[i-(c-1)/2,j-(h-1)/2,k-(d-1)/2];cubes.push({ce,dep:rot3(ce,RX17,RY17)[2]})}
-  cubes.sort((a,b)=>a.dep-b.dep);
+  const c=A17.x,d=A17.z,hg=A17.hg,cx=(c-1)/2,cz=(d-1)/2;
+  const pr=p=>`${300+44*p[0]},${172-44*p[1]}`;
   let out="";
+  for(let k=0;k<d;k++)for(let i=0;i<c;i++){
+    const q=[[i-cx-.5,-1.5,k-cz-.5],[i-cx+.5,-1.5,k-cz-.5],[i-cx+.5,-1.5,k-cz+.5],[i-cx-.5,-1.5,k-cz+.5]];
+    out+=`<polygon points="${q.map(p=>pr(rot3(p,RX17,RY17))).join(" ")}" fill="#F1E4CC" stroke="#DCC9A8" stroke-width="1.5" data-col="${i},${k}" style="cursor:pointer"/>`;
+  }
+  const cubes=[];
+  for(let k=0;k<d;k++)for(let i=0;i<c;i++)for(let j=0;j<hg[k][i];j++){const ce=[i-cx,j-1,k-cz];cubes.push({i,k,ce,dep:rot3(ce,RX17,RY17)[2]})}
+  cubes.sort((a,b)=>a.dep-b.dep);
   cubes.forEach(cb=>{
     const P=B17v.v.map(p=>rot3([p[0]+cb.ce[0],p[1]+cb.ce[1],p[2]+cb.ce[2]],RX17,RY17));
-    const fs=B17v.f.map((f,fi)=>({fi,z:f.reduce((s,vi)=>s+P[vi][2],0)/4,pts:f.map(vi=>`${300+46*P[vi][0]},${168-46*P[vi][1]}`).join(" ")}));
+    const fs=B17v.f.map((f,fi)=>({fi,z:f.reduce((s,vi)=>s+P[vi][2],0)/4,pts:f.map(vi=>pr(P[vi])).join(" ")}));
     fs.sort((a,b)=>a.z-b.z);
-    out+=fs.map(f=>`<polygon points="${f.pts}" fill="${C17[f.fi]}" stroke="#7A3B10" stroke-width="1.5" stroke-linejoin="round"/>`).join("");
+    out+=fs.map(f=>`<polygon points="${f.pts}" fill="${C17[f.fi]}" stroke="#7A3B10" stroke-width="1.5" stroke-linejoin="round" data-col="${cb.i},${cb.k}" style="cursor:pointer"/>`).join("");
   });
   $("m17svg").innerHTML=out;
-  const n=c*h*d;
-  $("m17eq").innerHTML=h===1?`たて ${d} × よこ ${c} ＝ <span style="color:#E8590C">${n}こ</span>（これが めんせき！）`:`たて ${d} × よこ ${c} × たかさ ${h} ＝ <span style="color:#E8590C">${n}こ</span>（これが たいせき！）`;
+  const flat=hg.flat(),n=flat.reduce((a,b)=>a+b,0),uni=flat.every(v=>v===flat[0])&&flat[0]>0;
+  $("m17eq").innerHTML=uni?(flat[0]===1?`たて ${d} × よこ ${c} ＝ <span style="color:#E8590C">${n}こ</span>（これが めんせき！）`:`たて ${d} × よこ ${c} × たかさ ${flat[0]} ＝ <span style="color:#E8590C">${n}こ</span>（これが たいせき！）`):`ぜんぶで <span style="color:#E8590C">${n}こ</span>`;
 }
-[["m17x","x","m17xv"],["m17y","y","m17yv"],["m17z","z","m17zv"]].forEach(([id,k,lab])=>$(id).oninput=e=>{A17[k]=+e.target.value;$(lab).textContent=A17[k];m17draw()});
-m17draw();
+$("m17svg").onclick=e=>{const dc=e.target.dataset&&e.target.dataset.col;if(!dc)return;const[i,k]=dc.split(",").map(Number);
+  const v=A17.hg[k][i];
+  if(A17.mode===1&&v<4){A17.hg[k][i]=v+1;snd(false)}
+  if(A17.mode===-1&&v>0)A17.hg[k][i]=v-1;
+  m17draw()};
+$("m17add").onclick=()=>{A17.mode=1;$("m17add").classList.remove("off");$("m17del").classList.add("off")};
+$("m17del").onclick=()=>{A17.mode=-1;$("m17del").classList.remove("off");$("m17add").classList.add("off")};
+[["m17x","x","m17xv"],["m17y","y","m17yv"],["m17z","z","m17zv"]].forEach(([id,k,lab])=>$(id).oninput=e=>{A17[k]=+e.target.value;$(lab).textContent=A17[k];m17reset()});
+m17reset();
 </script>
 </body>
 </html>
