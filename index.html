@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>さんすう・数学ラボ｜小1〜中3</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Hiragino Sans","Yu Gothic",sans-serif}
+body{background:#f0f4f8;color:#1a2b3c;padding-bottom:40px}
+header{background:#2563eb;color:#fff;padding:16px;text-align:center}
+header h1{font-size:1.3rem}
+header p{font-size:.8rem;opacity:.9}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding:12px;justify-content:center}
+.tabs button{padding:8px 14px;border:none;border-radius:20px;background:#fff;font-size:.9rem;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.tabs button.on{background:#2563eb;color:#fff}
+#units{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:0 14px}
+.unit{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.12);cursor:pointer}
+.unit:active{transform:scale(.96)}
+.unit b{display:block;font-size:.95rem;margin-bottom:4px}
+.unit span{font-size:.75rem;color:#64748b}
+#play{display:none;padding:16px;max-width:520px;margin:0 auto}
+#q{background:#fff;border-radius:14px;padding:24px;font-size:1.6rem;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.15);margin-bottom:14px;word-break:break-all}
+#ans{width:100%;font-size:1.4rem;padding:12px;border-radius:10px;border:2px solid #cbd5e1;text-align:center}
+.row{display:flex;gap:10px;margin-top:12px}
+.row button{flex:1;padding:14px;font-size:1.1rem;border:none;border-radius:10px;color:#fff}
+#ok{background:#16a34a}#next{background:#2563eb}#back{background:#64748b}
+#fb{text-align:center;font-size:1.2rem;min-height:1.6em;margin-top:12px;font-weight:bold}
+#score{text-align:center;color:#475569;margin-top:8px}
+</style>
+</head>
+<body>
+<header><h1>さんすう・数学ラボ</h1><p>小1〜中3の単元を、といて体感して学ぶ</p></header>
+<div class="tabs" id="tabs"></div>
+<div id="units"></div>
+<div id="play">
+  <div id="q"></div>
+  <input id="ans" inputmode="text" placeholder="こたえを入力">
+  <div class="row"><button id="ok">こたえ合わせ</button><button id="next">次の問題</button><button id="back">単元一覧</button></div>
+  <div id="fb"></div><div id="score"></div>
+</div>
+<script>
+const r=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const U=[
+["小1","たしざん(〜10)",()=>{const a=r(1,5),b=r(1,5);return[`${a} + ${b} = ?`,a+b]}],
+["小1","ひきざん(〜10)",()=>{const a=r(5,10),b=r(1,a);return[`${a} − ${b} = ?`,a-b]}],
+["小2","くり上がりたし算",()=>{const a=r(15,89),b=r(15,89);return[`${a} + ${b} = ?`,a+b]}],
+["小2","かけ算九九",()=>{const a=r(2,9),b=r(2,9);return[`${a} × ${b} = ?`,a*b]}],
+["小3","わり算",()=>{const b=r(2,9),c=r(2,9);return[`${b*c} ÷ ${b} = ?`,c]}],
+["小3","あまりのあるわり算",()=>{const b=r(2,9),c=r(2,9),m=r(1,b-1);return[`${b*c+m} ÷ ${b} = ? あまり?（例: 3あまり1）`,`${c}あまり${m}`]}],
+["小4","2けたのかけ算",()=>{const a=r(11,99),b=r(11,99);return[`${a} × ${b} = ?`,a*b]}],
+["小4","角度",()=>{const a=r(10,170);return[`一直線は180°。${a}°ののこりは?`,180-a]}],
+["小5","分数のたし算",()=>{const d=r(2,9),a=r(1,d-1),b=r(1,d-a);return[`${a}/${d} + ${b}/${d} = ?（例: 3/5）`,`${a+b}/${d}`]}],
+["小5","小数のかけ算",()=>{const a=r(11,99)/10,b=r(2,9);return[`${a} × ${b} = ?`,Math.round(a*b*10)/10]}],
+["小6","割合(%)",()=>{const a=r(1,9)*10,b=r(2,9)*100;return[`${b}円の${a}%は?`,b*a/100]}],
+["小6","速さ",()=>{const v=r(2,9)*10,t=r(2,5);return[`時速${v}kmで${t}時間。道のりは?(km)`,v*t]}],
+["中1","正負の数",()=>{const a=r(-9,9),b=r(-9,9);return[`(${a}) + (${b}) = ?`,a+b]}],
+["中1","一次方程式",()=>{const x=r(2,9),a=r(2,9),b=r(1,20);return[`${a}x + ${b} = ${a*x+b}　x = ?`,x]}],
+["中2","連立方程式",()=>{const x=r(1,9),y=r(1,9);return[`x+y=${x+y}, x−y=${x-y}　x = ?`,x]}],
+["中2","一次関数",()=>{const a=r(2,5),b=r(-5,5),x=r(1,9);return[`y=${a}x${b<0?b:"+"+b} で x=${x} のとき y=?`,a*x+b]}],
+["中3","展開",()=>{const a=r(1,9);return[`(x+${a})² を展開したときの定数項は?`,a*a]}],
+["中3","三平方の定理",()=>{const p=[[3,4,5],[5,12,13],[6,8,10],[8,15,17]][r(0,3)];return[`直角をはさむ2辺が${p[0]}と${p[1]}。斜辺は?`,p[2]]}],
+];
+const grades=[...new Set(U.map(u=>u[0]))];let g=grades[0],cur=null,okN=0,allN=0;
+const tabs=document.getElementById("tabs"),units=document.getElementById("units"),play=document.getElementById("play");
+function drawTabs(){tabs.innerHTML="";grades.forEach(x=>{const b=document.createElement("button");b.textContent=x;b.className=x===g?"on":"";b.onclick=()=>{g=x;drawTabs();drawUnits()};tabs.appendChild(b)})}
+function drawUnits(){units.innerHTML="";U.filter(u=>u[0]===g).forEach(u=>{const d=document.createElement("div");d.className="unit";d.innerHTML=`<b>${u[1]}</b><span>${u[0]}</span>`;d.onclick=()=>start(u);units.appendChild(d)})}
+function start(u){cur=u;okN=0;allN=0;units.style.display="none";tabs.style.display="none";play.style.display="block";next()}
+function next(){const[q,a]=cur[2]();document.getElementById("q").textContent=q;play.dataset.a=a;document.getElementById("ans").value="";document.getElementById("fb").textContent="";document.getElementById("ans").focus()}
+document.getElementById("ok").onclick=()=>{const v=document.getElementById("ans").value.trim().replace(/\s/g,"");const a=String(play.dataset.a);allN++;const hit=v===a;if(hit)okN++;document.getElementById("fb").textContent=hit?"⭕ せいかい！":`❌ こたえは ${a}`;document.getElementById("fb").style.color=hit?"#16a34a":"#dc2626";document.getElementById("score").textContent=`せいせき: ${okN} / ${allN}`};
+document.getElementById("next").onclick=next;
+document.getElementById("back").onclick=()=>{play.style.display="none";units.style.display="grid";tabs.style.display="flex"};
+drawTabs();drawUnits();
+</script>
+</body>
+</html>
