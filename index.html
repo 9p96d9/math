@@ -6,29 +6,34 @@
 <title>さわって さんすう図鑑</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Hiragino Maru Gothic ProN","BIZ UDPGothic","Yu Gothic",sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:#FFF8EE;color:#3D3229;min-height:100vh}
-h1{font-size:1.5rem;text-align:center;padding:20px 10px 6px;color:#E8590C}
-.sub{text-align:center;color:#A08A70;font-size:.85rem;margin-bottom:14px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:0 16px;max-width:640px;margin:0 auto}
-.card{background:#fff;border-radius:22px;padding:20px 10px;text-align:center;box-shadow:0 3px 0 #EAD9C4;cursor:pointer;border:3px solid transparent}
-.card:active{transform:scale(.94);border-color:#FFB35C}
-.card .em{font-size:3rem;display:block;margin-bottom:8px}
-.card b{font-size:1.05rem}
-.drill{display:block;text-align:center;margin:22px auto;color:#7A6A55;font-size:.95rem}
-.screen{display:none;max-width:560px;margin:0 auto;padding:0 14px 40px}
-.top{display:flex;align-items:center;gap:10px;padding:14px 0}
-.top button{border:none;background:#fff;border-radius:14px;padding:10px 16px;font-size:1rem;box-shadow:0 2px 0 #EAD9C4}
-.top h2{font-size:1.25rem;color:#E8590C}
-.hint{color:#A08A70;font-size:.9rem;margin-bottom:14px}
-.big{font-size:4.5rem;font-weight:bold;text-align:center;color:#2B6CB0;line-height:1.2}
-.eq{font-size:2.6rem;font-weight:bold;text-align:center;margin-top:14px;color:#2B6CB0}
-.panel{background:#fff;border-radius:22px;padding:18px;box-shadow:0 3px 0 #EAD9C4;margin-bottom:16px}
+body{background:#FAF1E4;color:#4A3B2C;min-height:100vh}
+h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
+.sub{text-align:center;color:#A98F6F;font-size:.85rem;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;padding:0 16px 10px;max-width:680px;margin:0 auto}
+.card{background:#FFFDF8;border-radius:18px;overflow:hidden;box-shadow:0 2px 6px rgba(122,90,56,.14);cursor:pointer;border:2px solid #F0E2CC}
+.card:active{transform:scale(.96)}
+.card svg{display:block;width:100%;height:92px;background:#FFFDF8}
+.cap{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-top:2px solid #F5EAD6}
+.cap b{font-size:.95rem}
+.chip{font-size:.72rem;color:#8A6A48;background:#F5EAD6;border-radius:10px;padding:3px 9px}
+.drill{display:block;text-align:center;margin:16px auto 30px;color:#8A6A48;font-size:.95rem}
+.screen{display:none;max-width:600px;margin:0 auto;padding:0 14px 40px}
+.top{display:flex;align-items:center;gap:10px;padding:14px 0 8px}
+.top button{border:none;background:#FFFDF8;border-radius:14px;padding:10px 16px;font-size:1rem;box-shadow:0 2px 0 #DCC9A8;color:#7A5A38}
+.top h2{font-size:1.2rem;color:#7A5A38}
+.hint{color:#A98F6F;font-size:.88rem;margin-bottom:12px}
+.big{font-size:4.2rem;font-weight:bold;text-align:center;color:#B4551E;line-height:1.2}
+.eq{font-size:2.4rem;font-weight:bold;text-align:center;margin-top:14px;color:#B4551E}
+.panel{background:#FFFDF8;border-radius:20px;padding:16px;box-shadow:0 2px 6px rgba(122,90,56,.14);margin-bottom:14px;border:2px solid #F0E2CC}
 @keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
 .pop{animation:pop .25s ease-out}
+.bbtn{border:none;border-radius:16px;padding:14px 18px;font-size:1.05rem;font-weight:bold;color:#FFF8EE;background:#8A6A48;box-shadow:0 3px 0 #6B5138}
+.bbtn.off{background:#E9DCC6;color:#8A6A48;box-shadow:0 3px 0 #D3BFA0}
+.bbtn:active{transform:translateY(2px);box-shadow:none}
 /* かぞえる */
 .frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
-.cell{aspect-ratio:1;background:#FDF1E0;border:3px dashed #E5CDA8;border-radius:14px;font-size:1.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.cell.on{border-style:solid;border-color:#FFB35C;background:#fff}
+.cell{aspect-ratio:1;background:#FBF3E3;border:3px dashed #E0CCA8;border-radius:14px;font-size:1.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cell.on{border-style:solid;border-color:#E8A54B;background:#fff}
 /* たしざん */
 .groups{display:flex;gap:12px}
 .grp{flex:1;border-radius:18px;padding:12px;min-height:120px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;cursor:pointer}
@@ -36,8 +41,7 @@ h1{font-size:1.5rem;text-align:center;padding:20px 10px 6px;color:#E8590C}
 .blk{width:34px;height:34px;border-radius:9px}
 .blk.r{background:#FA5252}.blk.b{background:#339AF0}
 .btnrow{display:flex;gap:10px;margin-top:14px}
-.btnrow button{flex:1;border:none;border-radius:16px;padding:16px;font-size:1.15rem;font-weight:bold;color:#fff;background:#F76707;box-shadow:0 3px 0 #C9560B}
-.btnrow button.gray{background:#ADB5BD;box-shadow:0 3px 0 #868E96}
+.btnrow .bbtn{flex:1}
 #m2res{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:44px;margin-top:14px}
 /* 10のなかま */
 .tenrow{display:flex;gap:6px;justify-content:center}
@@ -45,21 +49,39 @@ h1{font-size:1.5rem;text-align:center;padding:20px 10px 6px;color:#E8590C}
 .tc.l{background:#F783AC}.tc.r{background:#4DABF7}
 /* かけざん */
 #grid{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;touch-action:none}
-#grid div{aspect-ratio:1;background:#FDF1E0;border-radius:6px}
-#grid div.hi{background:#69DB7C}
+#grid div{aspect-ratio:1;background:#FBF3E3;border-radius:6px}
+#grid div.hi{background:#82C91E}
 /* ぶんすう */
-.pierow{display:flex;align-items:center;justify-content:center;gap:18px}
-.frac{text-align:center;font-size:2.6rem;font-weight:bold;color:#2B6CB0}
-.frac .bar{border-top:5px solid #2B6CB0;width:64px;margin:4px auto}
+.pierow{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.frac{text-align:center;font-size:2.6rem;font-weight:bold;color:#B4551E}
+.frac .bar{border-top:5px solid #B4551E;width:64px;margin:4px auto}
 .nbtn{display:flex;gap:12px;justify-content:center;margin-top:14px;align-items:center}
-.nbtn button{width:64px;height:64px;border:none;border-radius:50%;font-size:2rem;color:#fff;background:#F76707;box-shadow:0 3px 0 #C9560B}
-.nbtn span{font-size:1.2rem;font-weight:bold}
+.nbtn button{width:60px;height:60px;border:none;border-radius:50%;font-size:2rem;color:#FFF8EE;background:#8A6A48;box-shadow:0 3px 0 #6B5138}
+.nbtn span{font-size:1.15rem;font-weight:bold}
 /* 数直線 */
 #nline{position:relative;height:120px;touch-action:none;cursor:pointer}
 #rail{position:absolute;left:5%;right:5%;top:80px;height:8px;background:#CBB79A;border-radius:4px}
 .tick{position:absolute;top:72px;width:2px;height:24px;background:#CBB79A}
-.tnum{position:absolute;top:98px;font-size:.85rem;color:#7A6A55;transform:translateX(-50%)}
+.tnum{position:absolute;top:98px;font-size:.85rem;color:#8A6A48;transform:translateX(-50%)}
 #frog{position:absolute;top:22px;font-size:3rem;transform:translateX(-50%);transition:left .12s}
+/* 水そう */
+#m7stat{text-align:center;font-size:1rem;font-weight:bold;color:#7A5A38;margin-bottom:10px}
+.simwrap{display:flex;gap:8px;justify-content:center;align-items:flex-start}
+.simwrap svg{flex:1;min-width:0}
+.ctl{display:flex;align-items:center;gap:10px;margin:10px 0}
+.ctl label{font-size:.9rem;font-weight:bold;color:#7A5A38;width:8.5em}
+.ctl input[type=range]{flex:1;accent-color:#8A6A48;height:28px}
+.ctl b{width:4.5em;text-align:right;color:#B4551E}
+.tgl{display:flex;gap:8px;margin:10px 0}
+.tgl .bbtn{flex:1;padding:11px 6px;font-size:.95rem}
+.play{display:flex;gap:8px;align-items:center;margin-top:6px}
+.play .bbtn{padding:11px 14px;font-size:1rem}
+.play input[type=range]{flex:1;accent-color:#8A6A48;height:28px}
+.spd{display:flex;gap:4px}
+.spd .bbtn{padding:9px 8px;font-size:.8rem;border-radius:12px}
+/* ギザギザ */
+#m8svg{width:100%;touch-action:none;display:block}
+#m8note{text-align:center;font-size:1.05rem;font-weight:bold;color:#7A5A38;min-height:1.6em;margin-top:10px}
 </style>
 </head>
 <body>
@@ -67,12 +89,14 @@ h1{font-size:1.5rem;text-align:center;padding:20px 10px 6px;color:#E8590C}
   <h1>🧮 さわって さんすう図鑑</h1>
   <p class="sub">とく前に、さわって かんかくを つかもう</p>
   <div class="cards">
-    <div class="card" data-s="m1"><span class="em">🍎</span><b>かぞえる</b></div>
-    <div class="card" data-s="m2"><span class="em">➕</span><b>たしざん</b></div>
-    <div class="card" data-s="m3"><span class="em">🔟</span><b>10のなかま</b></div>
-    <div class="card" data-s="m4"><span class="em">✖️</span><b>かけざん</b></div>
-    <div class="card" data-s="m5"><span class="em">🍕</span><b>ぶんすう</b></div>
-    <div class="card" data-s="m6"><span class="em">🐸</span><b>すうちょくせん</b></div>
+    <div class="card" data-s="m7"><svg viewBox="0 0 100 60"><rect x="8" y="8" width="32" height="44" fill="none" stroke="#8A6A48" stroke-width="3"/><rect x="11" y="30" width="26" height="19" fill="#74C0FC"/><line x1="24" y1="4" x2="24" y2="28" stroke="#74C0FC" stroke-width="3"/><polyline points="52,50 68,38 90,14" fill="none" stroke="#4DABF7" stroke-width="3"/><line x1="52" y1="8" x2="52" y2="52" stroke="#D3BFA0" stroke-width="2"/><line x1="50" y1="52" x2="94" y2="52" stroke="#D3BFA0" stroke-width="2"/></svg><div class="cap"><b>水そうの給排水</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m8"><svg viewBox="0 0 100 60"><line x1="8" y1="14" x2="92" y2="14" stroke="#F0B27A" stroke-width="2"/><line x1="8" y1="52" x2="92" y2="52" stroke="#8A6A48" stroke-width="2"/><polygon points="10,52 38,52 22,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><polygon points="38,52 66,52 44,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><polygon points="66,52 92,52 80,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><circle cx="22" cy="14" r="5" fill="#E03131"/><circle cx="44" cy="14" r="5" fill="#E03131"/><circle cx="80" cy="14" r="5" fill="#E03131"/></svg><div class="cap"><b>ギザギザを一枚に</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m1"><svg viewBox="0 0 100 60"><g fill="#FA5252"><circle cx="14" cy="18" r="7"/><circle cx="34" cy="18" r="7"/><circle cx="54" cy="18" r="7"/></g><g fill="none" stroke="#E0CCA8" stroke-width="2" stroke-dasharray="4 3"><circle cx="74" cy="18" r="7"/><circle cx="14" cy="42" r="7"/><circle cx="34" cy="42" r="7"/></g></svg><div class="cap"><b>かぞえる</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m2"><svg viewBox="0 0 100 60"><g fill="#FA5252"><rect x="10" y="22" width="14" height="14" rx="4"/><rect x="27" y="22" width="14" height="14" rx="4"/></g><text x="50" y="36" font-size="18" fill="#8A6A48">＋</text><g fill="#339AF0"><rect x="62" y="22" width="14" height="14" rx="4"/><rect x="79" y="22" width="14" height="14" rx="4"/></g></svg><div class="cap"><b>たしざん</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m3"><svg viewBox="0 0 100 60"><g fill="#F783AC"><circle cx="14" cy="30" r="7"/><circle cx="32" cy="30" r="7"/><circle cx="50" cy="30" r="7"/></g><g fill="#4DABF7"><circle cx="68" cy="30" r="7"/><circle cx="86" cy="30" r="7"/></g></svg><div class="cap"><b>10のなかま</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m4"><svg viewBox="0 0 100 60"><g fill="#82C91E"><rect x="20" y="10" width="12" height="12" rx="3"/><rect x="35" y="10" width="12" height="12" rx="3"/><rect x="50" y="10" width="12" height="12" rx="3"/><rect x="65" y="10" width="12" height="12" rx="3"/><rect x="20" y="25" width="12" height="12" rx="3"/><rect x="35" y="25" width="12" height="12" rx="3"/><rect x="50" y="25" width="12" height="12" rx="3"/><rect x="65" y="25" width="12" height="12" rx="3"/><rect x="20" y="40" width="12" height="12" rx="3"/><rect x="35" y="40" width="12" height="12" rx="3"/><rect x="50" y="40" width="12" height="12" rx="3"/><rect x="65" y="40" width="12" height="12" rx="3"/></g></svg><div class="cap"><b>かけざん</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m5"><svg viewBox="0 0 100 60"><circle cx="50" cy="30" r="24" fill="#FFF3BF" stroke="#B4551E" stroke-width="3"/><path d="M50,30 L50,6 A24,24 0 0 1 71,42 Z" fill="#FFA94D" stroke="#B4551E" stroke-width="3"/></svg><div class="cap"><b>ぶんすう</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m6"><svg viewBox="0 0 100 60"><line x1="8" y1="40" x2="92" y2="40" stroke="#CBB79A" stroke-width="4"/><g stroke="#CBB79A" stroke-width="2"><line x1="20" y1="33" x2="20" y2="47"/><line x1="40" y1="33" x2="40" y2="47"/><line x1="60" y1="33" x2="60" y2="47"/><line x1="80" y1="33" x2="80" y2="47"/></g><text x="40" y="30" font-size="16" text-anchor="middle">🐸</text></svg><div class="cap"><b>すうちょくせん</b><span class="chip">ひらく</span></div></div>
   </div>
   <a class="drill" href="drill.html">✏️ もんだいに ちょうせんする →</a>
 </div>
@@ -89,7 +113,7 @@ h1{font-size:1.5rem;text-align:center;padding:20px 10px 6px;color:#E8590C}
   <p class="hint">はこを タッチして ブロックを ふやそう</p>
   <div class="panel">
     <div class="groups"><div class="grp red" id="g1"></div><div class="grp blue" id="g2"></div></div>
-    <div class="btnrow"><button id="merge">がっちゃん！</button><button class="gray" id="m2c">やりなおす</button></div>
+    <div class="btnrow"><button class="bbtn" id="merge">がっちゃん！</button><button class="bbtn off" id="m2c">やりなおす</button></div>
     <div id="m2res"></div>
   </div>
   <div class="eq" id="m2eq">0 ＋ 0</div>
@@ -128,9 +152,39 @@ h1{font-size:1.5rem;text-align:center;padding:20px 10px 6px;color:#E8590C}
   <div class="big" id="m6n">0</div>
 </div>
 
+<div class="screen" id="m7">
+  <div class="top"><button>← もどる</button><h2>🚰 水そうの給排水</h2></div>
+  <div id="m7stat"></div>
+  <div class="panel">
+    <div class="simwrap">
+      <svg id="tank" viewBox="0 0 150 250"></svg>
+      <svg id="graph" viewBox="0 0 260 250"></svg>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ctl"><label>じゃぐち（入る）</label><input type="range" id="inr" min="0" max="50" step="5" value="30"><b>毎分 <span id="inv">30</span></b></div>
+    <div class="ctl"><label>はいすい（ぬける）</label><input type="range" id="outr" min="0" max="50" step="5" value="25"><b>毎分 <span id="outv">25</span></b></div>
+    <div class="tgl"><button class="bbtn off" id="plugC">せんを しめる</button><button class="bbtn" id="plugO">せんを あける</button></div>
+    <div class="tgl"><button class="bbtn" id="axL">グラフ：水位</button><button class="bbtn off" id="axV">水のりょう</button></div>
+    <div class="play">
+      <button class="bbtn" id="m7play">⏸</button><button class="bbtn off" id="m7rst">↺</button>
+      <div class="spd"><button class="bbtn off" data-spd="0.5">×½</button><button class="bbtn" data-spd="1">×1</button><button class="bbtn off" data-spd="2">×2</button><button class="bbtn off" data-spd="4">×4</button></div>
+      <input type="range" id="m7time" min="0" max="20" step="0.1" value="0">
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="m8">
+  <div class="top"><button>← もどる</button><h2>⛰️ ギザギザを一枚に</h2></div>
+  <p class="hint">あかい ● を よこに うごかしてみよう（等積変形）</p>
+  <div class="panel"><svg id="m8svg" viewBox="0 0 400 270"></svg></div>
+  <div class="nbtn"><button id="m8m">‹</button><span id="m8n">4まい</span><button id="m8p">›</button></div>
+  <div id="m8note"></div>
+</div>
+
 <script>
 const $=id=>document.getElementById(id);
-function show(id){$("home").style.display=id?"none":"block";document.querySelectorAll(".screen").forEach(s=>s.style.display=s.id===id?"block":"none")}
+function show(id){$("home").style.display=id?"none":"block";document.querySelectorAll(".screen").forEach(s=>s.style.display=s.id===id?"block":"none");if(id==="m7"&&W.hist.length<=1)W.run=true;if(id==="m7")m7draw();if(id==="m8")m8draw()}
 document.querySelectorAll(".card").forEach(c=>c.onclick=()=>show(c.dataset.s));
 document.querySelectorAll(".top button").forEach(b=>b.onclick=()=>show(null));
 
@@ -143,7 +197,7 @@ function blk(cls){const b=document.createElement("div");b.className="blk "+cls+"
 function m2eq(t){$("m2eq").textContent=t}
 $("g1").onclick=()=>{if(a1<9){a1++;$("g1").appendChild(blk("r"));m2eq(`${a1} ＋ ${a2}`)}};
 $("g2").onclick=()=>{if(a2<9){a2++;$("g2").appendChild(blk("b"));m2eq(`${a1} ＋ ${a2}`)}};
-$("merge").onclick=()=>{const r=$("m2res");r.innerHTML="";let i=0;for(;i<a1+a2;i++){const b=blk(i<a1?"r":"b");b.style.animationDelay=(i*.08)+"s";r.appendChild(b)}m2eq(`${a1} ＋ ${a2} ＝ ${a1+a2}`)};
+$("merge").onclick=()=>{const r=$("m2res");r.innerHTML="";for(let i=0;i<a1+a2;i++){const b=blk(i<a1?"r":"b");b.style.animationDelay=(i*.08)+"s";r.appendChild(b)}m2eq(`${a1} ＋ ${a2} ＝ ${a1+a2}`)};
 $("m2c").onclick=()=>{a1=0;a2=0;$("g1").innerHTML="";$("g2").innerHTML="";$("m2res").innerHTML="";m2eq("0 ＋ 0")};
 
 /* m3 10のなかま */
@@ -163,7 +217,7 @@ grid.onpointerup=()=>gdown=false;
 /* m5 ぶんすう */
 let nCut=4,sel=new Set([0]);
 function arc(cx,cy,r,a0,a1){const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);return`M${cx},${cy} L${x0},${y0} A${r},${r} 0 ${(a1-a0)>Math.PI?1:0} 1 ${x1},${y1} Z`}
-function drawPie(){const s=$("pie");s.innerHTML="";for(let i=0;i<nCut;i++){const a0=-Math.PI/2+i*2*Math.PI/nCut,a1=a0+2*Math.PI/nCut;const p=document.createElementNS("http://www.w3.org/2000/svg","path");p.setAttribute("d",arc(120,120,110,a0,a1));p.setAttribute("fill",sel.has(i)?"#FFA94D":"#FFF3BF");p.setAttribute("stroke","#E8590C");p.setAttribute("stroke-width","4");p.style.cursor="pointer";p.onclick=()=>{sel.has(i)?sel.delete(i):sel.add(i);drawPie()};s.appendChild(p)}$("fk").textContent=sel.size;$("fn").textContent=nCut;$("cutn").textContent=nCut+"きれ"}
+function drawPie(){const s=$("pie");s.innerHTML="";for(let i=0;i<nCut;i++){const b0=-Math.PI/2+i*2*Math.PI/nCut,b1=b0+2*Math.PI/nCut;const p=document.createElementNS("http://www.w3.org/2000/svg","path");p.setAttribute("d",arc(120,120,110,b0,b1));p.setAttribute("fill",sel.has(i)?"#FFA94D":"#FFF3BF");p.setAttribute("stroke","#B4551E");p.setAttribute("stroke-width","4");p.style.cursor="pointer";p.onclick=()=>{sel.has(i)?sel.delete(i):sel.add(i);drawPie()};s.appendChild(p)}$("fk").textContent=sel.size;$("fn").textContent=nCut;$("cutn").textContent=nCut+"きれ"}
 $("cutp").onclick=()=>{if(nCut<12){nCut++;sel=new Set([0]);drawPie()}};
 $("cutm").onclick=()=>{if(nCut>2){nCut--;sel=new Set([0]);drawPie()}};
 drawPie();
@@ -177,6 +231,72 @@ let fdown=false;
 nl.onpointerdown=e=>{fdown=true;nl.setPointerCapture(e.pointerId);frogSet(e)};
 nl.onpointermove=e=>{if(fdown)frogSet(e)};
 nl.onpointerup=()=>fdown=false;
+
+/* m7 水そうの給排水 —— 1分きざみのシミュレーション（0.1分ステップ） */
+const W={lv:0,run:false,spd:1,inR:30,outR:25,open:true,axis:0,hist:[0],acc:0};
+const STEP=0.1,TMAX=20;
+const rate=()=>(W.inR-(W.open?W.outR:0))/10; // cm/分（底面積10L/cm）
+function stepOnce(){W.lv=Math.min(20,Math.max(0,W.lv+rate()*STEP));W.hist.push(W.lv)}
+function m7t(){return (W.hist.length-1)*STEP}
+setInterval(()=>{if(!W.run||m7t()>=TMAX)return;W.acc+=0.1*W.spd;while(W.acc>=STEP-1e-9&&m7t()<TMAX){stepOnce();W.acc-=STEP}if(m7t()>=TMAX)W.run=false;m7draw()},100);
+function m7draw(){
+  const t=m7t(),lv=W.lv,vol=lv*10;
+  $("m7stat").textContent=`いま ${t.toFixed(1)}分 ・ すいい ${lv.toFixed(1)}cm ・ 水のりょう ${vol.toFixed(0)}`;
+  $("m7play").textContent=W.run?"⏸":"▶";
+  $("m7time").value=t;
+  const wy=230-lv*10;
+  let tk=`<path d="M15,20 L15,230 L135,230 L135,20" fill="none" stroke="#7A5A38" stroke-width="5"/>`;
+  tk+=`<rect x="18" y="${wy}" width="114" height="${230-wy}" fill="#74C0FC"/>`;
+  tk+=`<rect x="63" y="2" width="24" height="10" rx="3" fill="#8A6A48"/>`;
+  if(W.inR>0&&W.run&&t<TMAX)tk+=`<line x1="75" y1="12" x2="75" y2="${wy}" stroke="#74C0FC" stroke-width="6"/>`;
+  tk+=`<rect x="133" y="216" width="16" height="9" fill="#8A6A48"/>`;
+  if(W.open&&W.outR>0&&lv>0)tk+=`<line x1="146" y1="225" x2="146" y2="242" stroke="#74C0FC" stroke-width="5"/>`;
+  if(lv>0.3)tk+=`<text x="24" y="${wy-6}" font-size="13" fill="#1971C2" font-weight="bold">すいい ${lv.toFixed(1)}cm</text>`;
+  $("tank").innerHTML=tk;
+  const mx=W.axis?200:20;
+  let g=`<text x="130" y="14" font-size="11" fill="#8A6A48" text-anchor="middle">時間と ${W.axis?"水のりょう":"水位(cm)"}</text>`;
+  for(let i=0;i<=4;i++){const y=210-i*45;g+=`<line x1="20" y1="${y}" x2="240" y2="${y}" stroke="#EFE3CC" stroke-width="1"/><text x="16" y="${y+4}" font-size="10" fill="#A98F6F" text-anchor="end">${mx/4*i}</text>`}
+  for(let i=0;i<=4;i++){const x=20+i*55;g+=`<line x1="${x}" y1="30" x2="${x}" y2="210" stroke="#EFE3CC" stroke-width="1"/><text x="${x}" y="226" font-size="10" fill="#A98F6F" text-anchor="middle">${i*5}分</text>`}
+  g+=`<line x1="20" y1="210" x2="240" y2="210" stroke="#B49B78" stroke-width="2"/><line x1="20" y1="30" x2="20" y2="210" stroke="#B49B78" stroke-width="2"/>`;
+  const pts=W.hist.map((v,i)=>`${20+(i*STEP)/TMAX*220},${210-(W.axis?v*10:v)/mx*180}`).join(" ");
+  g+=`<polyline points="${pts}" fill="none" stroke="#1C7ED6" stroke-width="3"/>`;
+  g+=`<circle cx="${20+t/TMAX*220}" cy="${210-(W.axis?vol:lv)/mx*180}" r="5" fill="#1C7ED6"/>`;
+  $("graph").innerHTML=g;
+}
+$("inr").oninput=e=>{W.inR=+e.target.value;$("inv").textContent=W.inR};
+$("outr").oninput=e=>{W.outR=+e.target.value;$("outv").textContent=W.outR};
+function plugUI(){$("plugO").classList.toggle("off",!W.open);$("plugC").classList.toggle("off",W.open)}
+$("plugO").onclick=()=>{W.open=true;plugUI()};
+$("plugC").onclick=()=>{W.open=false;plugUI()};
+$("axL").onclick=()=>{W.axis=0;$("axL").classList.remove("off");$("axV").classList.add("off");m7draw()};
+$("axV").onclick=()=>{W.axis=1;$("axV").classList.remove("off");$("axL").classList.add("off");m7draw()};
+$("m7play").onclick=()=>{if(m7t()<TMAX)W.run=!W.run;m7draw()};
+$("m7rst").onclick=()=>{W.hist=[0];W.lv=0;W.acc=0;W.run=true;m7draw()};
+document.querySelectorAll("[data-spd]").forEach(b=>b.onclick=()=>{W.spd=+b.dataset.spd;document.querySelectorAll("[data-spd]").forEach(x=>x.classList.toggle("off",x!==b))});
+$("m7time").oninput=e=>{const idx=Math.round(+e.target.value/STEP);if(idx<W.hist.length){W.hist=W.hist.slice(0,idx+1);W.lv=W.hist[W.hist.length-1]}else{while(W.hist.length-1<idx)stepOnce()}m7draw()};
+m7draw();
+
+/* m8 ギザギザを一枚に（等積変形） */
+const G={n:4,ax:[],drag:-1};
+const BX0=40,BX1=360,BY=235,AY=45;
+function m8init(){G.ax=[];const w=(BX1-BX0)/G.n;for(let i=0;i<G.n;i++)G.ax.push(BX0+(i+.5)*w);$("m8n").textContent=G.n+"まい";m8draw()}
+function m8draw(){
+  const s=$("m8svg"),w=(BX1-BX0)/G.n;let h="";
+  h+=`<line x1="${BX0-15}" y1="${AY}" x2="${BX1+15}" y2="${AY}" stroke="#F0B27A" stroke-width="2.5"/>`;
+  h+=`<line x1="${BX0-15}" y1="${BY}" x2="${BX1+15}" y2="${BY}" stroke="#8A6A48" stroke-width="3"/>`;
+  for(let i=0;i<G.n;i++){const x0=BX0+i*w,x1=x0+w;h+=`<polygon points="${x0},${BY} ${x1},${BY} ${G.ax[i]},${AY}" fill="#CFE5F5" fill-opacity=".75" stroke="#3E566B" stroke-width="2.5"/>`}
+  for(let i=0;i<G.n;i++)h+=`<circle cx="${G.ax[i]}" cy="${AY}" r="11" fill="#E03131" stroke="#fff" stroke-width="3"/>`;
+  s.innerHTML=h;
+  const together=G.ax.every(x=>Math.abs(x-G.ax[0])<7);
+  $("m8note").textContent=together?"ひとつに なった！ おおきな 1まいでも めんせきは おなじ！":"どこへ うごかしても めんせきは かわらないよ";
+}
+function m8x(e){const rc=$("m8svg").getBoundingClientRect();return (e.clientX-rc.left)/rc.width*400}
+$("m8svg").onpointerdown=e=>{const x=m8x(e);let bi=-1,bd=28;G.ax.forEach((a,i)=>{const d=Math.abs(a-x);if(d<bd){bd=d;bi=i}});G.drag=bi;if(bi>=0)$("m8svg").setPointerCapture(e.pointerId)};
+$("m8svg").onpointermove=e=>{if(G.drag<0)return;let x=Math.min(BX1,Math.max(BX0,m8x(e)));G.ax.forEach((a,i)=>{if(i!==G.drag&&Math.abs(a-x)<8)x=a});G.ax[G.drag]=x;m8draw()};
+$("m8svg").onpointerup=()=>G.drag=-1;
+$("m8p").onclick=()=>{if(G.n<6){G.n++;m8init()}};
+$("m8m").onclick=()=>{if(G.n>2){G.n--;m8init()}};
+m8init();
 </script>
 </body>
 </html>
