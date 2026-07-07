@@ -92,6 +92,7 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
     <div class="card" data-s="m7"><svg viewBox="0 0 100 60"><rect x="8" y="8" width="32" height="44" fill="none" stroke="#8A6A48" stroke-width="3"/><rect x="11" y="30" width="26" height="19" fill="#74C0FC"/><line x1="24" y1="4" x2="24" y2="28" stroke="#74C0FC" stroke-width="3"/><polyline points="52,50 68,38 90,14" fill="none" stroke="#4DABF7" stroke-width="3"/><line x1="52" y1="8" x2="52" y2="52" stroke="#D3BFA0" stroke-width="2"/><line x1="50" y1="52" x2="94" y2="52" stroke="#D3BFA0" stroke-width="2"/></svg><div class="cap"><b>水そうの給排水</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m8"><svg viewBox="0 0 100 60"><line x1="8" y1="14" x2="92" y2="14" stroke="#F0B27A" stroke-width="2"/><line x1="8" y1="52" x2="92" y2="52" stroke="#8A6A48" stroke-width="2"/><polygon points="10,52 38,52 22,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><polygon points="38,52 66,52 44,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><polygon points="66,52 92,52 80,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><circle cx="22" cy="14" r="5" fill="#E03131"/><circle cx="44" cy="14" r="5" fill="#E03131"/><circle cx="80" cy="14" r="5" fill="#E03131"/></svg><div class="cap"><b>ギザギザを一枚に</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m9"><svg viewBox="0 0 100 60"><line x1="4" y1="24" x2="96" y2="24" stroke="#B49B78" stroke-width="2"/><line x1="4" y1="46" x2="96" y2="46" stroke="#B49B78" stroke-width="2"/><rect x="52" y="12" width="34" height="10" rx="4" fill="#339AF0"/><rect x="12" y="34" width="44" height="10" rx="4" fill="#F03E3E"/></svg><div class="cap"><b>通過算</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m10"><svg viewBox="0 0 100 60"><line x1="6" y1="46" x2="94" y2="46" stroke="#8A6A48" stroke-width="3"/><circle cx="34" cy="30" r="16" fill="#74C0FC" stroke="#1971C2" stroke-width="3"/><line x1="34" y1="30" x2="34" y2="46" stroke="#E03131" stroke-width="3"/><circle cx="34" cy="46" r="4" fill="#E03131"/><line x1="34" y1="52" x2="66" y2="52" stroke="#1C7ED6" stroke-width="4"/></svg><div class="cap"><b>円と円周率</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m1"><svg viewBox="0 0 100 60"><g fill="#FA5252"><circle cx="14" cy="18" r="7"/><circle cx="34" cy="18" r="7"/><circle cx="54" cy="18" r="7"/></g><g fill="none" stroke="#E0CCA8" stroke-width="2" stroke-dasharray="4 3"><circle cx="74" cy="18" r="7"/><circle cx="14" cy="42" r="7"/><circle cx="34" cy="42" r="7"/></g></svg><div class="cap"><b>かぞえる</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m2"><svg viewBox="0 0 100 60"><g fill="#FA5252"><rect x="10" y="22" width="14" height="14" rx="4"/><rect x="27" y="22" width="14" height="14" rx="4"/></g><text x="50" y="36" font-size="18" fill="#8A6A48">＋</text><g fill="#339AF0"><rect x="62" y="22" width="14" height="14" rx="4"/><rect x="79" y="22" width="14" height="14" rx="4"/></g></svg><div class="cap"><b>たしざん</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m3"><svg viewBox="0 0 100 60"><g fill="#F783AC"><circle cx="14" cy="30" r="7"/><circle cx="32" cy="30" r="7"/><circle cx="50" cy="30" r="7"/></g><g fill="#4DABF7"><circle cx="68" cy="30" r="7"/><circle cx="86" cy="30" r="7"/></g></svg><div class="cap"><b>10のなかま</b><span class="chip">ひらく</span></div></div>
@@ -200,6 +201,17 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
       <div class="spd"><button class="bbtn off" data-spd9="0.5">×½</button><button class="bbtn" data-spd9="1">×1</button><button class="bbtn off" data-spd9="2">×2</button><button class="bbtn off" data-spd9="4">×4</button></div>
       <input type="range" id="m9time" min="0" max="20" step="0.1" value="0">
     </div>
+  </div>
+</div>
+
+<div class="screen" id="m10">
+  <div class="top"><button>← もどる</button><h2>⚪ 円と円周率</h2></div>
+  <p class="hint">円を ゆびで ころがしてみよう。1しゅうで どれだけ すすむ？</p>
+  <div class="panel"><svg id="m10svg" viewBox="0 0 600 220" style="width:100%;display:block;touch-action:none"></svg></div>
+  <div id="m10eq" style="text-align:center;font-size:1.3rem;font-weight:bold;color:#7A5A38;min-height:1.6em;margin-bottom:10px"></div>
+  <div class="panel">
+    <div class="ctl"><label>⚪ 直径</label><input type="range" id="m10d" min="4" max="12" step="1" value="8"><b><span id="m10dv">8</span>cm</b></div>
+    <div class="tgl"><button class="bbtn" id="m10roll">▶ ころがす</button><button class="bbtn off" id="m10rst">↺ もどす</button></div>
   </div>
 </div>
 
@@ -370,6 +382,35 @@ $("m9rst").onclick=()=>{T9.t=0;T9.run=true;m9draw()};
 document.querySelectorAll("[data-spd9]").forEach(b=>b.onclick=()=>{T9.spd=+b.dataset.spd9;document.querySelectorAll("[data-spd9]").forEach(x=>x.classList.toggle("off",x!==b))});
 $("m9time").oninput=e=>{T9.t=+e.target.value;m9draw()};
 m9calc();m9draw();
+
+/* m10 円と円周率 —— 1cm=10px, 転がした長さ = θ×半径 */
+const C={d:8,th:0,roll:false};
+const CX0=40,CY=170,PXCM=10;
+function c10draw(){
+  const r=C.d/2*PXCM,cx=CX0+C.th*r,cy=CY-r;
+  const rolled=C.th*C.d/2,ratio=C.d?rolled/C.d:0;
+  let h=`<line x1="10" y1="${CY}" x2="590" y2="${CY}" stroke="#8A6A48" stroke-width="3"/>`;
+  h+=`<line x1="${CX0}" y1="${CY+14}" x2="${CX0+C.th*r}" y2="${CY+14}" stroke="#1C7ED6" stroke-width="7" stroke-linecap="round"/>`;
+  for(let k=1;k<=3;k++){const x=CX0+k*C.d*PXCM;if(x<590)h+=`<line x1="${x}" y1="${CY+6}" x2="${x}" y2="${CY+24}" stroke="#8A6A48" stroke-width="2"/><text x="${x}" y="${CY+40}" font-size="12" fill="#8A6A48" text-anchor="middle">直径×${k}</text>`}
+  const xp=CX0+3.14159*C.d*PXCM;
+  h+=`<line x1="${xp}" y1="${CY+6}" x2="${xp}" y2="${CY+24}" stroke="#E03131" stroke-width="3"/><text x="${xp}" y="${CY+40}" font-size="12" font-weight="bold" fill="#E03131" text-anchor="middle">×3.14</text>`;
+  h+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#D0EBFF" stroke="#1971C2" stroke-width="4"/>`;
+  const px=cx-r*Math.sin(C.th),py=cy+r*Math.cos(C.th);
+  h+=`<line x1="${cx}" y1="${cy}" x2="${px}" y2="${py}" stroke="#E03131" stroke-width="3"/><circle cx="${px}" cy="${py}" r="6" fill="#E03131"/>`;
+  h+=`<text x="${cx}" y="${cy-r-10}" font-size="13" fill="#1971C2" text-anchor="middle" font-weight="bold">直径 ${C.d}cm</text>`;
+  $("m10svg").innerHTML=h;
+  const done=C.th>=2*Math.PI-0.02;
+  $("m10eq").innerHTML=done?`1しゅう ＝ ${rolled.toFixed(1)}cm ＝ 直径の <span style="color:#E03131">3.14ばい</span>！これが 円周率！`:`ころがった ながさ ${rolled.toFixed(1)}cm ＝ 直径 × ${ratio.toFixed(2)}`;
+}
+setInterval(()=>{if(!C.roll)return;C.th=Math.min(2*Math.PI,C.th+0.035);if(C.th>=2*Math.PI)C.roll=false;$("m10roll").textContent=C.roll?"⏸ とめる":"▶ ころがす";c10draw()},30);
+$("m10roll").onclick=()=>{if(C.th>=2*Math.PI-0.02){C.th=0}C.roll=!C.roll;$("m10roll").textContent=C.roll?"⏸ とめる":"▶ ころがす"};
+$("m10rst").onclick=()=>{C.th=0;C.roll=false;$("m10roll").textContent="▶ ころがす";c10draw()};
+$("m10d").oninput=e=>{C.d=+e.target.value;$("m10dv").textContent=C.d;c10draw()};
+let c10drag=false;
+$("m10svg").onpointerdown=e=>{c10drag=true;C.roll=false;$("m10svg").setPointerCapture(e.pointerId)};
+$("m10svg").onpointermove=e=>{if(!c10drag)return;const rc=$("m10svg").getBoundingClientRect();const x=(e.clientX-rc.left)/rc.width*600;const r=C.d/2*PXCM;C.th=Math.min(2*Math.PI,Math.max(0,(x-CX0)/r));c10draw()};
+$("m10svg").onpointerup=()=>c10drag=false;
+c10draw();
 </script>
 </body>
 </html>
