@@ -2,74 +2,181 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>さんすう・数学ラボ｜小1〜中3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>さわって さんすう図鑑</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:"Hiragino Sans","Yu Gothic",sans-serif}
-body{background:#f0f4f8;color:#1a2b3c;padding-bottom:40px}
-header{background:#2563eb;color:#fff;padding:16px;text-align:center}
-header h1{font-size:1.3rem}
-header p{font-size:.8rem;opacity:.9}
-.tabs{display:flex;flex-wrap:wrap;gap:6px;padding:12px;justify-content:center}
-.tabs button{padding:8px 14px;border:none;border-radius:20px;background:#fff;font-size:.9rem;box-shadow:0 1px 3px rgba(0,0,0,.15)}
-.tabs button.on{background:#2563eb;color:#fff}
-#units{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:0 14px}
-.unit{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.12);cursor:pointer}
-.unit:active{transform:scale(.96)}
-.unit b{display:block;font-size:.95rem;margin-bottom:4px}
-.unit span{font-size:.75rem;color:#64748b}
-#play{display:none;padding:16px;max-width:520px;margin:0 auto}
-#q{background:#fff;border-radius:14px;padding:24px;font-size:1.6rem;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.15);margin-bottom:14px;word-break:break-all}
-#ans{width:100%;font-size:1.4rem;padding:12px;border-radius:10px;border:2px solid #cbd5e1;text-align:center}
-.row{display:flex;gap:10px;margin-top:12px}
-.row button{flex:1;padding:14px;font-size:1.1rem;border:none;border-radius:10px;color:#fff}
-#ok{background:#16a34a}#next{background:#2563eb}#back{background:#64748b}
-#fb{text-align:center;font-size:1.2rem;min-height:1.6em;margin-top:12px;font-weight:bold}
-#score{text-align:center;color:#475569;margin-top:8px}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Hiragino Maru Gothic ProN","BIZ UDPGothic","Yu Gothic",sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#FFF8EE;color:#3D3229;min-height:100vh}
+h1{font-size:1.5rem;text-align:center;padding:20px 10px 6px;color:#E8590C}
+.sub{text-align:center;color:#A08A70;font-size:.85rem;margin-bottom:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:0 16px;max-width:640px;margin:0 auto}
+.card{background:#fff;border-radius:22px;padding:20px 10px;text-align:center;box-shadow:0 3px 0 #EAD9C4;cursor:pointer;border:3px solid transparent}
+.card:active{transform:scale(.94);border-color:#FFB35C}
+.card .em{font-size:3rem;display:block;margin-bottom:8px}
+.card b{font-size:1.05rem}
+.drill{display:block;text-align:center;margin:22px auto;color:#7A6A55;font-size:.95rem}
+.screen{display:none;max-width:560px;margin:0 auto;padding:0 14px 40px}
+.top{display:flex;align-items:center;gap:10px;padding:14px 0}
+.top button{border:none;background:#fff;border-radius:14px;padding:10px 16px;font-size:1rem;box-shadow:0 2px 0 #EAD9C4}
+.top h2{font-size:1.25rem;color:#E8590C}
+.hint{color:#A08A70;font-size:.9rem;margin-bottom:14px}
+.big{font-size:4.5rem;font-weight:bold;text-align:center;color:#2B6CB0;line-height:1.2}
+.eq{font-size:2.6rem;font-weight:bold;text-align:center;margin-top:14px;color:#2B6CB0}
+.panel{background:#fff;border-radius:22px;padding:18px;box-shadow:0 3px 0 #EAD9C4;margin-bottom:16px}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+.pop{animation:pop .25s ease-out}
+/* かぞえる */
+.frame{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
+.cell{aspect-ratio:1;background:#FDF1E0;border:3px dashed #E5CDA8;border-radius:14px;font-size:1.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cell.on{border-style:solid;border-color:#FFB35C;background:#fff}
+/* たしざん */
+.groups{display:flex;gap:12px}
+.grp{flex:1;border-radius:18px;padding:12px;min-height:120px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;cursor:pointer}
+.grp.red{background:#FFE3E3}.grp.blue{background:#D0EBFF}
+.blk{width:34px;height:34px;border-radius:9px}
+.blk.r{background:#FA5252}.blk.b{background:#339AF0}
+.btnrow{display:flex;gap:10px;margin-top:14px}
+.btnrow button{flex:1;border:none;border-radius:16px;padding:16px;font-size:1.15rem;font-weight:bold;color:#fff;background:#F76707;box-shadow:0 3px 0 #C9560B}
+.btnrow button.gray{background:#ADB5BD;box-shadow:0 3px 0 #868E96}
+#m2res{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:44px;margin-top:14px}
+/* 10のなかま */
+.tenrow{display:flex;gap:6px;justify-content:center}
+.tc{width:9%;aspect-ratio:1;border-radius:50%;cursor:pointer;border:3px solid #fff}
+.tc.l{background:#F783AC}.tc.r{background:#4DABF7}
+/* かけざん */
+#grid{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;touch-action:none}
+#grid div{aspect-ratio:1;background:#FDF1E0;border-radius:6px}
+#grid div.hi{background:#69DB7C}
+/* ぶんすう */
+.pierow{display:flex;align-items:center;justify-content:center;gap:18px}
+.frac{text-align:center;font-size:2.6rem;font-weight:bold;color:#2B6CB0}
+.frac .bar{border-top:5px solid #2B6CB0;width:64px;margin:4px auto}
+.nbtn{display:flex;gap:12px;justify-content:center;margin-top:14px;align-items:center}
+.nbtn button{width:64px;height:64px;border:none;border-radius:50%;font-size:2rem;color:#fff;background:#F76707;box-shadow:0 3px 0 #C9560B}
+.nbtn span{font-size:1.2rem;font-weight:bold}
+/* 数直線 */
+#nline{position:relative;height:120px;touch-action:none;cursor:pointer}
+#rail{position:absolute;left:5%;right:5%;top:80px;height:8px;background:#CBB79A;border-radius:4px}
+.tick{position:absolute;top:72px;width:2px;height:24px;background:#CBB79A}
+.tnum{position:absolute;top:98px;font-size:.85rem;color:#7A6A55;transform:translateX(-50%)}
+#frog{position:absolute;top:22px;font-size:3rem;transform:translateX(-50%);transition:left .12s}
 </style>
 </head>
 <body>
-<header><h1>さんすう・数学ラボ</h1><p>小1〜中3の単元を、といて体感して学ぶ</p></header>
-<div class="tabs" id="tabs"></div>
-<div id="units"></div>
-<div id="play">
-  <div id="q"></div>
-  <input id="ans" inputmode="text" placeholder="こたえを入力">
-  <div class="row"><button id="ok">こたえ合わせ</button><button id="next">次の問題</button><button id="back">単元一覧</button></div>
-  <div id="fb"></div><div id="score"></div>
+<div id="home">
+  <h1>🧮 さわって さんすう図鑑</h1>
+  <p class="sub">とく前に、さわって かんかくを つかもう</p>
+  <div class="cards">
+    <div class="card" data-s="m1"><span class="em">🍎</span><b>かぞえる</b></div>
+    <div class="card" data-s="m2"><span class="em">➕</span><b>たしざん</b></div>
+    <div class="card" data-s="m3"><span class="em">🔟</span><b>10のなかま</b></div>
+    <div class="card" data-s="m4"><span class="em">✖️</span><b>かけざん</b></div>
+    <div class="card" data-s="m5"><span class="em">🍕</span><b>ぶんすう</b></div>
+    <div class="card" data-s="m6"><span class="em">🐸</span><b>すうちょくせん</b></div>
+  </div>
+  <a class="drill" href="drill.html">✏️ もんだいに ちょうせんする →</a>
 </div>
+
+<div class="screen" id="m1">
+  <div class="top"><button>← もどる</button><h2>🍎 かぞえる</h2></div>
+  <p class="hint">ますを タッチすると りんごが でてくるよ</p>
+  <div class="panel"><div class="frame" id="f1"></div><div class="frame" id="f2"></div></div>
+  <div class="big" id="m1n">0</div>
+</div>
+
+<div class="screen" id="m2">
+  <div class="top"><button>← もどる</button><h2>➕ たしざん</h2></div>
+  <p class="hint">はこを タッチして ブロックを ふやそう</p>
+  <div class="panel">
+    <div class="groups"><div class="grp red" id="g1"></div><div class="grp blue" id="g2"></div></div>
+    <div class="btnrow"><button id="merge">がっちゃん！</button><button class="gray" id="m2c">やりなおす</button></div>
+    <div id="m2res"></div>
+  </div>
+  <div class="eq" id="m2eq">0 ＋ 0</div>
+</div>
+
+<div class="screen" id="m3">
+  <div class="top"><button>← もどる</button><h2>🔟 10のなかま</h2></div>
+  <p class="hint">まるを タッチして 10を ふたつに わけよう</p>
+  <div class="panel"><div class="tenrow" id="ten"></div></div>
+  <div class="eq" id="m3eq"></div>
+</div>
+
+<div class="screen" id="m4">
+  <div class="top"><button>← もどる</button><h2>✖️ かけざん</h2></div>
+  <p class="hint">ゆびで なぞって しかくを つくろう</p>
+  <div class="panel"><div id="grid"></div></div>
+  <div class="eq" id="m4eq">なぞってみよう</div>
+</div>
+
+<div class="screen" id="m5">
+  <div class="top"><button>← もどる</button><h2>🍕 ぶんすう</h2></div>
+  <p class="hint">ピザを きって、たべるところを タッチしよう</p>
+  <div class="panel">
+    <div class="pierow">
+      <svg id="pie" width="240" height="240" viewBox="0 0 240 240"></svg>
+      <div class="frac"><div id="fk">1</div><div class="bar"></div><div id="fn">4</div></div>
+    </div>
+    <div class="nbtn"><button id="cutm">−</button><span id="cutn">4きれ</span><button id="cutp">＋</button></div>
+  </div>
+</div>
+
+<div class="screen" id="m6">
+  <div class="top"><button>← もどる</button><h2>🐸 すうちょくせん</h2></div>
+  <p class="hint">かえるを ゆびで うごかそう</p>
+  <div class="panel"><div id="nline"><div id="rail"></div><div id="frog">🐸</div></div></div>
+  <div class="big" id="m6n">0</div>
+</div>
+
 <script>
-const r=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
-const U=[
-["小1","たしざん(〜10)",()=>{const a=r(1,5),b=r(1,5);return[`${a} + ${b} = ?`,a+b]}],
-["小1","ひきざん(〜10)",()=>{const a=r(5,10),b=r(1,a);return[`${a} − ${b} = ?`,a-b]}],
-["小2","くり上がりたし算",()=>{const a=r(15,89),b=r(15,89);return[`${a} + ${b} = ?`,a+b]}],
-["小2","かけ算九九",()=>{const a=r(2,9),b=r(2,9);return[`${a} × ${b} = ?`,a*b]}],
-["小3","わり算",()=>{const b=r(2,9),c=r(2,9);return[`${b*c} ÷ ${b} = ?`,c]}],
-["小3","あまりのあるわり算",()=>{const b=r(2,9),c=r(2,9),m=r(1,b-1);return[`${b*c+m} ÷ ${b} = ? あまり?（例: 3あまり1）`,`${c}あまり${m}`]}],
-["小4","2けたのかけ算",()=>{const a=r(11,99),b=r(11,99);return[`${a} × ${b} = ?`,a*b]}],
-["小4","角度",()=>{const a=r(10,170);return[`一直線は180°。${a}°ののこりは?`,180-a]}],
-["小5","分数のたし算",()=>{const d=r(2,9),a=r(1,d-1),b=r(1,d-a);return[`${a}/${d} + ${b}/${d} = ?（例: 3/5）`,`${a+b}/${d}`]}],
-["小5","小数のかけ算",()=>{const a=r(11,99)/10,b=r(2,9);return[`${a} × ${b} = ?`,Math.round(a*b*10)/10]}],
-["小6","割合(%)",()=>{const a=r(1,9)*10,b=r(2,9)*100;return[`${b}円の${a}%は?`,b*a/100]}],
-["小6","速さ",()=>{const v=r(2,9)*10,t=r(2,5);return[`時速${v}kmで${t}時間。道のりは?(km)`,v*t]}],
-["中1","正負の数",()=>{const a=r(-9,9),b=r(-9,9);return[`(${a}) + (${b}) = ?`,a+b]}],
-["中1","一次方程式",()=>{const x=r(2,9),a=r(2,9),b=r(1,20);return[`${a}x + ${b} = ${a*x+b}　x = ?`,x]}],
-["中2","連立方程式",()=>{const x=r(1,9),y=r(1,9);return[`x+y=${x+y}, x−y=${x-y}　x = ?`,x]}],
-["中2","一次関数",()=>{const a=r(2,5),b=r(-5,5),x=r(1,9);return[`y=${a}x${b<0?b:"+"+b} で x=${x} のとき y=?`,a*x+b]}],
-["中3","展開",()=>{const a=r(1,9);return[`(x+${a})² を展開したときの定数項は?`,a*a]}],
-["中3","三平方の定理",()=>{const p=[[3,4,5],[5,12,13],[6,8,10],[8,15,17]][r(0,3)];return[`直角をはさむ2辺が${p[0]}と${p[1]}。斜辺は?`,p[2]]}],
-];
-const grades=[...new Set(U.map(u=>u[0]))];let g=grades[0],cur=null,okN=0,allN=0;
-const tabs=document.getElementById("tabs"),units=document.getElementById("units"),play=document.getElementById("play");
-function drawTabs(){tabs.innerHTML="";grades.forEach(x=>{const b=document.createElement("button");b.textContent=x;b.className=x===g?"on":"";b.onclick=()=>{g=x;drawTabs();drawUnits()};tabs.appendChild(b)})}
-function drawUnits(){units.innerHTML="";U.filter(u=>u[0]===g).forEach(u=>{const d=document.createElement("div");d.className="unit";d.innerHTML=`<b>${u[1]}</b><span>${u[0]}</span>`;d.onclick=()=>start(u);units.appendChild(d)})}
-function start(u){cur=u;okN=0;allN=0;units.style.display="none";tabs.style.display="none";play.style.display="block";next()}
-function next(){const[q,a]=cur[2]();document.getElementById("q").textContent=q;play.dataset.a=a;document.getElementById("ans").value="";document.getElementById("fb").textContent="";document.getElementById("ans").focus()}
-document.getElementById("ok").onclick=()=>{const v=document.getElementById("ans").value.trim().replace(/\s/g,"");const a=String(play.dataset.a);allN++;const hit=v===a;if(hit)okN++;document.getElementById("fb").textContent=hit?"⭕ せいかい！":`❌ こたえは ${a}`;document.getElementById("fb").style.color=hit?"#16a34a":"#dc2626";document.getElementById("score").textContent=`せいせき: ${okN} / ${allN}`};
-document.getElementById("next").onclick=next;
-document.getElementById("back").onclick=()=>{play.style.display="none";units.style.display="grid";tabs.style.display="flex"};
-drawTabs();drawUnits();
+const $=id=>document.getElementById(id);
+function show(id){$("home").style.display=id?"none":"block";document.querySelectorAll(".screen").forEach(s=>s.style.display=s.id===id?"block":"none")}
+document.querySelectorAll(".card").forEach(c=>c.onclick=()=>show(c.dataset.s));
+document.querySelectorAll(".top button").forEach(b=>b.onclick=()=>show(null));
+
+/* m1 かぞえる */
+for(const f of["f1","f2"])for(let i=0;i<10;i++){const d=document.createElement("div");d.className="cell";d.onclick=()=>{d.classList.toggle("on");d.textContent=d.classList.contains("on")?"🍎":"";d.classList.remove("pop");void d.offsetWidth;d.classList.add("pop");$("m1n").textContent=document.querySelectorAll(".cell.on").length};$(f).appendChild(d)}
+
+/* m2 たしざん */
+let a1=0,a2=0;
+function blk(cls){const b=document.createElement("div");b.className="blk "+cls+" pop";return b}
+function m2eq(t){$("m2eq").textContent=t}
+$("g1").onclick=()=>{if(a1<9){a1++;$("g1").appendChild(blk("r"));m2eq(`${a1} ＋ ${a2}`)}};
+$("g2").onclick=()=>{if(a2<9){a2++;$("g2").appendChild(blk("b"));m2eq(`${a1} ＋ ${a2}`)}};
+$("merge").onclick=()=>{const r=$("m2res");r.innerHTML="";let i=0;for(;i<a1+a2;i++){const b=blk(i<a1?"r":"b");b.style.animationDelay=(i*.08)+"s";r.appendChild(b)}m2eq(`${a1} ＋ ${a2} ＝ ${a1+a2}`)};
+$("m2c").onclick=()=>{a1=0;a2=0;$("g1").innerHTML="";$("g2").innerHTML="";$("m2res").innerHTML="";m2eq("0 ＋ 0")};
+
+/* m3 10のなかま */
+let split=5;
+function drawTen(){const t=$("ten");t.innerHTML="";for(let i=0;i<10;i++){const c=document.createElement("div");c.className="tc "+(i<split?"l":"r");c.onclick=()=>{split=i+1;drawTen()};t.appendChild(c)}$("m3eq").innerHTML=`10 ＝ <span style="color:#D6336C">${split}</span> ＋ <span style="color:#1971C2">${10-split}</span>`}
+drawTen();
+
+/* m4 かけざん */
+const grid=$("grid"),cells=[];
+for(let i=0;i<81;i++){const d=document.createElement("div");grid.appendChild(d);cells.push(d)}
+function gridSet(e){const rc=grid.getBoundingClientRect();const c=Math.min(9,Math.max(1,Math.ceil((e.clientX-rc.left)/rc.width*9)));const r=Math.min(9,Math.max(1,Math.ceil((e.clientY-rc.top)/rc.height*9)));cells.forEach((d,i)=>d.classList.toggle("hi",Math.floor(i/9)<r&&i%9<c));$("m4eq").textContent=`${r} × ${c} ＝ ${r*c}`}
+let gdown=false;
+grid.onpointerdown=e=>{gdown=true;grid.setPointerCapture(e.pointerId);gridSet(e)};
+grid.onpointermove=e=>{if(gdown)gridSet(e)};
+grid.onpointerup=()=>gdown=false;
+
+/* m5 ぶんすう */
+let nCut=4,sel=new Set([0]);
+function arc(cx,cy,r,a0,a1){const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);return`M${cx},${cy} L${x0},${y0} A${r},${r} 0 ${(a1-a0)>Math.PI?1:0} 1 ${x1},${y1} Z`}
+function drawPie(){const s=$("pie");s.innerHTML="";for(let i=0;i<nCut;i++){const a0=-Math.PI/2+i*2*Math.PI/nCut,a1=a0+2*Math.PI/nCut;const p=document.createElementNS("http://www.w3.org/2000/svg","path");p.setAttribute("d",arc(120,120,110,a0,a1));p.setAttribute("fill",sel.has(i)?"#FFA94D":"#FFF3BF");p.setAttribute("stroke","#E8590C");p.setAttribute("stroke-width","4");p.style.cursor="pointer";p.onclick=()=>{sel.has(i)?sel.delete(i):sel.add(i);drawPie()};s.appendChild(p)}$("fk").textContent=sel.size;$("fn").textContent=nCut;$("cutn").textContent=nCut+"きれ"}
+$("cutp").onclick=()=>{if(nCut<12){nCut++;sel=new Set([0]);drawPie()}};
+$("cutm").onclick=()=>{if(nCut>2){nCut--;sel=new Set([0]);drawPie()}};
+drawPie();
+
+/* m6 すうちょくせん */
+const nl=$("nline");let val=0;
+for(let i=0;i<=20;i++){const x=5+i*90/20;const t=document.createElement("div");t.className="tick";t.style.left=x+"%";nl.appendChild(t);if(i%5===0){const n=document.createElement("div");n.className="tnum";n.style.left=x+"%";n.textContent=i;nl.appendChild(n)}}
+function frogSet(e){const rc=nl.getBoundingClientRect();val=Math.min(20,Math.max(0,Math.round(((e.clientX-rc.left)/rc.width-.05)/.9*20)));$("frog").style.left=(5+val*90/20)+"%";$("m6n").textContent=val}
+$("frog").style.left="5%";
+let fdown=false;
+nl.onpointerdown=e=>{fdown=true;nl.setPointerCapture(e.pointerId);frogSet(e)};
+nl.onpointermove=e=>{if(fdown)frogSet(e)};
+nl.onpointerup=()=>fdown=false;
 </script>
 </body>
 </html>
