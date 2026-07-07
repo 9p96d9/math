@@ -91,6 +91,7 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
   <div class="cards">
     <div class="card" data-s="m7"><svg viewBox="0 0 100 60"><rect x="8" y="8" width="32" height="44" fill="none" stroke="#8A6A48" stroke-width="3"/><rect x="11" y="30" width="26" height="19" fill="#74C0FC"/><line x1="24" y1="4" x2="24" y2="28" stroke="#74C0FC" stroke-width="3"/><polyline points="52,50 68,38 90,14" fill="none" stroke="#4DABF7" stroke-width="3"/><line x1="52" y1="8" x2="52" y2="52" stroke="#D3BFA0" stroke-width="2"/><line x1="50" y1="52" x2="94" y2="52" stroke="#D3BFA0" stroke-width="2"/></svg><div class="cap"><b>水そうの給排水</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m8"><svg viewBox="0 0 100 60"><line x1="8" y1="14" x2="92" y2="14" stroke="#F0B27A" stroke-width="2"/><line x1="8" y1="52" x2="92" y2="52" stroke="#8A6A48" stroke-width="2"/><polygon points="10,52 38,52 22,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><polygon points="38,52 66,52 44,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><polygon points="66,52 92,52 80,14" fill="#CFE5F5" stroke="#5C7A96" stroke-width="2"/><circle cx="22" cy="14" r="5" fill="#E03131"/><circle cx="44" cy="14" r="5" fill="#E03131"/><circle cx="80" cy="14" r="5" fill="#E03131"/></svg><div class="cap"><b>ギザギザを一枚に</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m9"><svg viewBox="0 0 100 60"><line x1="4" y1="24" x2="96" y2="24" stroke="#B49B78" stroke-width="2"/><line x1="4" y1="46" x2="96" y2="46" stroke="#B49B78" stroke-width="2"/><rect x="52" y="12" width="34" height="10" rx="4" fill="#339AF0"/><rect x="12" y="34" width="44" height="10" rx="4" fill="#F03E3E"/></svg><div class="cap"><b>通過算</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m1"><svg viewBox="0 0 100 60"><g fill="#FA5252"><circle cx="14" cy="18" r="7"/><circle cx="34" cy="18" r="7"/><circle cx="54" cy="18" r="7"/></g><g fill="none" stroke="#E0CCA8" stroke-width="2" stroke-dasharray="4 3"><circle cx="74" cy="18" r="7"/><circle cx="14" cy="42" r="7"/><circle cx="34" cy="42" r="7"/></g></svg><div class="cap"><b>かぞえる</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m2"><svg viewBox="0 0 100 60"><g fill="#FA5252"><rect x="10" y="22" width="14" height="14" rx="4"/><rect x="27" y="22" width="14" height="14" rx="4"/></g><text x="50" y="36" font-size="18" fill="#8A6A48">＋</text><g fill="#339AF0"><rect x="62" y="22" width="14" height="14" rx="4"/><rect x="79" y="22" width="14" height="14" rx="4"/></g></svg><div class="cap"><b>たしざん</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m3"><svg viewBox="0 0 100 60"><g fill="#F783AC"><circle cx="14" cy="30" r="7"/><circle cx="32" cy="30" r="7"/><circle cx="50" cy="30" r="7"/></g><g fill="#4DABF7"><circle cx="68" cy="30" r="7"/><circle cx="86" cy="30" r="7"/></g></svg><div class="cap"><b>10のなかま</b><span class="chip">ひらく</span></div></div>
@@ -182,9 +183,29 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
   <div id="m8note"></div>
 </div>
 
+<div class="screen" id="m9">
+  <div class="top"><button>← もどる</button><h2>🚄 通過算</h2></div>
+  <div id="m9stat" style="text-align:center;font-size:1.25rem;font-weight:bold;color:#E8590C;min-height:1.5em"></div>
+  <div id="m9f" style="text-align:center;font-size:.88rem;color:#8A6A48;margin-bottom:8px;min-height:1.3em"></div>
+  <div class="panel"><svg id="m9svg" viewBox="0 0 600 210" style="width:100%;display:block"></svg></div>
+  <div class="panel">
+    <div class="tgl"><button class="bbtn off m9mode" data-m="でんちゅう">でんちゅう</button><button class="bbtn off m9mode" data-m="トンネル">トンネル・てっきょう</button></div>
+    <div class="tgl"><button class="bbtn m9mode" data-m="すれちがい">すれちがい</button><button class="bbtn off m9mode" data-m="おいこし">おいこし</button></div>
+    <div class="ctl"><label>🚄 じぶんの ながさ</label><input type="range" id="m9l1" min="60" max="240" step="20" value="180"><b><span id="m9l1v">180</span>m</b></div>
+    <div class="ctl"><label>じぶんの はやさ</label><input type="range" id="m9v1" min="5" max="50" step="5" value="25"><b>秒速<span id="m9v1v">25</span>m</b></div>
+    <div class="ctl" id="m9row3"><label id="m9l2lab">🚃 あいての ながさ</label><input type="range" id="m9l2" min="60" max="240" step="20" value="100"><b><span id="m9l2v">100</span>m</b></div>
+    <div class="ctl" id="m9row4"><label>あいての はやさ</label><input type="range" id="m9v2" min="5" max="45" step="5" value="10"><b>秒速<span id="m9v2v">10</span>m</b></div>
+    <div class="play">
+      <button class="bbtn" id="m9play">⏸</button><button class="bbtn off" id="m9rst">↺</button>
+      <div class="spd"><button class="bbtn off" data-spd9="0.5">×½</button><button class="bbtn" data-spd9="1">×1</button><button class="bbtn off" data-spd9="2">×2</button><button class="bbtn off" data-spd9="4">×4</button></div>
+      <input type="range" id="m9time" min="0" max="20" step="0.1" value="0">
+    </div>
+  </div>
+</div>
+
 <script>
 const $=id=>document.getElementById(id);
-function show(id){$("home").style.display=id?"none":"block";document.querySelectorAll(".screen").forEach(s=>s.style.display=s.id===id?"block":"none");if(id==="m7"&&W.hist.length<=1)W.run=true;if(id==="m7")m7draw();if(id==="m8")m8draw()}
+function show(id){$("home").style.display=id?"none":"block";document.querySelectorAll(".screen").forEach(s=>s.style.display=s.id===id?"block":"none");if(id==="m7"&&W.hist.length<=1)W.run=true;if(id==="m7")m7draw();if(id==="m8")m8draw();if(id==="m9")m9draw()}
 document.querySelectorAll(".card").forEach(c=>c.onclick=()=>show(c.dataset.s));
 document.querySelectorAll(".top button").forEach(b=>b.onclick=()=>show(null));
 
@@ -297,6 +318,58 @@ $("m8svg").onpointerup=()=>G.drag=-1;
 $("m8p").onclick=()=>{if(G.n<6){G.n++;m8init()}};
 $("m8m").onclick=()=>{if(G.n>2){G.n--;m8init()}};
 m8init();
+
+/* m9 通過算 —— 位置は t の純関数（スクラブ自由） */
+const T9={mode:"すれちがい",L1:180,V1:25,L2:100,V2:10,t:0,run:true,spd:1,t0:0,t1:1,Tend:20,ok:true};
+function m9calc(){
+  const{mode,L1,V1,L2,V2}=T9;let t0=0,t1=0,ok=true;
+  if(mode==="でんちゅう"){t0=150/V1;t1=(150+L1)/V1}
+  else if(mode==="トンネル"){t0=150/V1;t1=(150+L1+L2)/V1}
+  else if(mode==="すれちがい"){t0=360/(V1+V2);t1=(360+L1+L2)/(V1+V2)}
+  else{if(V1>V2){t0=180/(V1-V2);t1=(180+L1+L2)/(V1-V2)}else ok=false}
+  T9.ok=ok;T9.t0=t0;T9.t1=t1;T9.Tend=ok?Math.min(60,t1+1.5):20;
+  const ts=$("m9time");ts.max=T9.Tend.toFixed(1);if(T9.t>T9.Tend)T9.t=T9.Tend;
+  $("m9row3").style.opacity=(mode==="でんちゅう")?".35":"1";
+  $("m9row4").style.opacity=(mode==="でんちゅう"||mode==="トンネル")?".35":"1";
+  $("m9l2lab").textContent=(mode==="トンネル")?"🚇 トンネルの ながさ":"🚃 あいての ながさ";
+}
+function m9draw(){
+  const{mode,L1,V1,L2,V2,t,t0,t1,ok}=T9;
+  const x1f=(mode==="すれちがい"?120:mode==="おいこし"?40:150)+V1*t;
+  const cam=Math.max(0,x1f-350),X=m=>30+(m-cam)*0.9;
+  let h=`<line x1="0" y1="95" x2="600" y2="95" stroke="#B49B78" stroke-width="2"/><line x1="0" y1="165" x2="600" y2="165" stroke="#B49B78" stroke-width="2"/>`;
+  for(let m=Math.floor(cam/50)*50;m<cam+700;m+=50){const x=X(m);if(x<0||x>600)continue;h+=`<line x1="${x}" y1="90" x2="${x}" y2="100" stroke="#D8C7A8" stroke-width="2"/><line x1="${x}" y1="160" x2="${x}" y2="170" stroke="#D8C7A8" stroke-width="2"/>`}
+  const during=ok&&t>=t0&&t<t1;
+  if(mode==="すれちがい"){const x2=480-V2*t;h+=train(X(x2),70,L2,"#339AF0",L2+"m")+dot(X(x2),83)}
+  if(mode==="おいこし"){const x2=220+V2*t;h+=train(X(x2),70,L2,"#339AF0",L2+"m")+dot(X(x2+L2),83)}
+  h+=train(X(x1f-L1),138,L1,"#F03E3E",L1+"m",during)+dot(X(x1f),151);
+  if(mode==="トンネル")h+=`<rect x="${X(300)}" y="128" width="${L2*0.9}" height="48" rx="10" fill="#C0AB8E" stroke="#8A6A48" stroke-width="2"/><text x="${X(300)+L2*0.45}" y="122" font-size="12" fill="#8A6A48" text-anchor="middle">トンネル ${L2}m</text>`;
+  if(mode==="でんちゅう")h+=`<line x1="${X(300)}" y1="55" x2="${X(300)}" y2="165" stroke="#7A5A38" stroke-width="5"/><circle cx="${X(300)}" cy="48" r="7" fill="#E8590C"/>`;
+  $("m9svg").innerHTML=h;
+  const st=$("m9stat");
+  if(!ok){st.textContent="おいつけない…";st.style.color="#868E96"}
+  else if(t<t0){st.textContent="はしってるよ…";st.style.color="#8A6A48"}
+  else if(during){st.textContent=`つうか中... ${(t-t0).toFixed(1)}秒`;st.style.color="#E8590C"}
+  else{st.textContent=`つうかに かかった じかん ＝ ${(t1-t0).toFixed(1)}秒`;st.style.color="#2F9E44"}
+  let f="";
+  if(mode==="でんちゅう")f=`でんしゃの ながさ ${L1}m ÷ 秒速${V1}m ＝ ${(L1/V1).toFixed(1)}秒`;
+  else if(mode==="トンネル")f=`ふたつの ながさの和 ＝ ${L1}m + ${L2}m ＝ ${L1+L2}m → ÷ 秒速${V1}m ＝ ${((L1+L2)/V1).toFixed(1)}秒`;
+  else if(mode==="すれちがい")f=`ながさの和 ${L1+L2}m ÷ はやさの和 秒速${V1+V2}m ＝ ${((L1+L2)/(V1+V2)).toFixed(1)}秒`;
+  else f=ok?`ながさの和 ${L1+L2}m ÷ はやさの差 秒速${V1-V2}m ＝ ${((L1+L2)/(V1-V2)).toFixed(1)}秒`:"はやさの差が ないと おいこせないよ";
+  $("m9f").textContent=f;
+  $("m9play").textContent=T9.run?"⏸":"▶";$("m9time").value=t;
+}
+function train(x,y,L,col,label,hi){return`<rect x="${x}" y="${y}" width="${L*0.9}" height="26" rx="10" fill="${col}"${hi?' stroke="#FFD43B" stroke-width="4"':''}/><text x="${x+L*0.45}" y="${y+18}" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">${label}</text>`}
+function dot(x,y){return`<circle cx="${x}" cy="${y}" r="4" fill="#fff" stroke="#4A3B2C" stroke-width="1.5"/>`}
+setInterval(()=>{if(!T9.run)return;T9.t=Math.min(T9.Tend,T9.t+0.05*T9.spd);if(T9.t>=T9.Tend)T9.run=false;if($("m9").style.display==="block")m9draw()},50);
+document.querySelectorAll(".m9mode").forEach(b=>b.onclick=()=>{T9.mode=b.dataset.m;document.querySelectorAll(".m9mode").forEach(x=>x.classList.toggle("off",x!==b));T9.t=0;T9.run=true;m9calc();m9draw()});
+const m9s=[["m9l1","L1","m9l1v"],["m9v1","V1","m9v1v"],["m9l2","L2","m9l2v"],["m9v2","V2","m9v2v"]];
+m9s.forEach(([id,k,lab])=>$(id).oninput=e=>{T9[k]=+e.target.value;$(lab).textContent=T9[k];m9calc();m9draw()});
+$("m9play").onclick=()=>{if(T9.t<T9.Tend)T9.run=!T9.run;m9draw()};
+$("m9rst").onclick=()=>{T9.t=0;T9.run=true;m9draw()};
+document.querySelectorAll("[data-spd9]").forEach(b=>b.onclick=()=>{T9.spd=+b.dataset.spd9;document.querySelectorAll("[data-spd9]").forEach(x=>x.classList.toggle("off",x!==b))});
+$("m9time").oninput=e=>{T9.t=+e.target.value;m9draw()};
+m9calc();m9draw();
 </script>
 </body>
 </html>
