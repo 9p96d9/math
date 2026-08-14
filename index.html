@@ -19,7 +19,7 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 .drill{display:block;text-align:center;margin:16px auto 30px;color:#8A6A48;font-size:.95rem}
 .screen{display:none;max-width:600px;margin:0 auto;padding:0 14px 40px}
 .top{display:flex;align-items:center;gap:10px;padding:14px 0 8px}
-.top button{border:none;background:#FFFDF8;border-radius:14px;padding:10px 16px;font-size:1rem;box-shadow:0 2px 0 #DCC9A8;color:#7A5A38}
+.top button{border:none;background:#FFFDF8;border-radius:14px;padding:10px 16px;min-height:44px;font-size:1rem;box-shadow:0 2px 0 #DCC9A8;color:#7A5A38}
 .top h2{font-size:1.2rem;color:#7A5A38}
 .hint{color:#A98F6F;font-size:.88rem;margin-bottom:12px}
 .big{font-size:4.2rem;font-weight:bold;text-align:center;color:#B4551E;line-height:1.2}
@@ -27,7 +27,7 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 .panel{background:#FFFDF8;border-radius:20px;padding:16px;box-shadow:0 2px 6px rgba(122,90,56,.14);margin-bottom:14px;border:2px solid #F0E2CC}
 @keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
 .pop{animation:pop .25s ease-out}
-.bbtn{border:none;border-radius:16px;padding:14px 18px;font-size:1.05rem;font-weight:bold;color:#FFF8EE;background:#8A6A48;box-shadow:0 3px 0 #6B5138}
+.bbtn{border:none;border-radius:16px;padding:14px 18px;min-height:44px;min-width:44px;font-size:1.05rem;font-weight:bold;color:#FFF8EE;background:#8A6A48;box-shadow:0 3px 0 #6B5138}
 .bbtn.off{background:#E9DCC6;color:#8A6A48;box-shadow:0 3px 0 #D3BFA0}
 .bbtn:active{transform:translateY(2px);box-shadow:none}
 /* かぞえる */
@@ -44,8 +44,9 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 .btnrow .bbtn{flex:1}
 #m2res{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:44px;margin-top:14px}
 /* 10のなかま */
-.tenrow{display:flex;gap:6px;justify-content:center}
-.tc{width:9%;aspect-ratio:1;border-radius:50%;cursor:pointer;border:3px solid #fff}
+.tenrow{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.tc{width:9%;min-width:44px;aspect-ratio:1;border-radius:50%;cursor:pointer;border:3px solid #fff}
+@media(max-width:600px){.tc{width:calc(20% - 6px)}}/* 10こ横1れつが 入らない画面では 5+5の2だんに(10のわくと同じ形) */
 .tc.l{background:#F783AC}.tc.r{background:#4DABF7}
 /* かけざん */
 #grid{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;touch-action:none}
@@ -70,15 +71,15 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 .simwrap svg{flex:1;min-width:0}
 .ctl{display:flex;align-items:center;gap:10px;margin:10px 0}
 .ctl label{font-size:.9rem;font-weight:bold;color:#7A5A38;width:8.5em}
-.ctl input[type=range]{flex:1;min-width:0;accent-color:#8A6A48;height:28px}
+.ctl input[type=range]{flex:1;min-width:0;accent-color:#8A6A48;height:44px}
 .ctl b{width:4.5em;text-align:right;color:#B4551E}
 .tgl{display:flex;gap:8px;margin:10px 0}
 .tgl .bbtn{flex:1;padding:11px 6px;font-size:.95rem}
 .play{display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap}
 .play .bbtn{padding:11px 14px;font-size:1rem}
-.play input[type=range]{flex:1;min-width:120px;accent-color:#8A6A48;height:28px}
+.play input[type=range]{flex:1;min-width:120px;accent-color:#8A6A48;height:44px}
 .spd{display:flex;gap:4px}
-.spd .bbtn{padding:9px 8px;font-size:.8rem;border-radius:12px}
+.spd .bbtn{padding:9px 8px;font-size:.8rem;border-radius:12px;min-width:46px}
 /* ギザギザ */
 #m8svg{width:100%;touch-action:none;display:block}
 #m8note{text-align:center;font-size:1.05rem;font-weight:bold;color:#7A5A38;min-height:1.6em;margin-top:10px}
