@@ -70,13 +70,13 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 .simwrap svg{flex:1;min-width:0}
 .ctl{display:flex;align-items:center;gap:10px;margin:10px 0}
 .ctl label{font-size:.9rem;font-weight:bold;color:#7A5A38;width:8.5em}
-.ctl input[type=range]{flex:1;accent-color:#8A6A48;height:28px}
+.ctl input[type=range]{flex:1;min-width:0;accent-color:#8A6A48;height:28px}
 .ctl b{width:4.5em;text-align:right;color:#B4551E}
 .tgl{display:flex;gap:8px;margin:10px 0}
 .tgl .bbtn{flex:1;padding:11px 6px;font-size:.95rem}
-.play{display:flex;gap:8px;align-items:center;margin-top:6px}
+.play{display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap}
 .play .bbtn{padding:11px 14px;font-size:1rem}
-.play input[type=range]{flex:1;accent-color:#8A6A48;height:28px}
+.play input[type=range]{flex:1;min-width:120px;accent-color:#8A6A48;height:28px}
 .spd{display:flex;gap:4px}
 .spd .bbtn{padding:9px 8px;font-size:.8rem;border-radius:12px}
 /* ギザギザ */
@@ -100,6 +100,9 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
     <div class="card" data-s="m14"><svg viewBox="0 0 100 60"><polygon points="50,8 88,34 68,54 26,50 14,26" fill="#D7E9F7" stroke="#3E566B" stroke-width="2.5"/><circle cx="50" cy="8" r="5" fill="#E03131"/><circle cx="88" cy="34" r="5" fill="#E03131"/><circle cx="14" cy="26" r="5" fill="#E03131"/></svg><div class="cap"><b>図形の角</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m16"><svg viewBox="0 0 100 60"><polygon points="14,22 34,14 54,22 34,30" fill="#69DB7C" stroke="#4A3B2C" stroke-width="2"/><polygon points="14,22 34,30 34,52 14,44" fill="#FF8787" stroke="#4A3B2C" stroke-width="2"/><polygon points="34,30 54,22 54,44 34,52" fill="#4DABF7" stroke="#4A3B2C" stroke-width="2"/><rect x="66" y="10" width="24" height="14" rx="3" fill="#FFF3BF" stroke="#B4551E" stroke-width="2"/><rect x="66" y="28" width="24" height="14" rx="3" fill="#FFF3BF" stroke="#B4551E" stroke-width="2"/><rect x="66" y="46" width="24" height="10" rx="3" fill="#FFF3BF" stroke="#B4551E" stroke-width="2"/></svg><div class="cap"><b>立体の投影図</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m17"><svg viewBox="0 0 100 60"><g stroke="#B4551E" stroke-width="1.5"><polygon points="30,26 50,18 70,26 50,34" fill="#FFD43B"/><polygon points="30,26 50,34 50,54 30,46" fill="#FFA94D"/><polygon points="50,34 70,26 70,46 50,54" fill="#E8590C"/><polygon points="50,10 70,18 70,26 50,18" fill="#FFD43B" opacity="0"/></g></svg><div class="cap"><b>面積と体積</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m18"><svg viewBox="0 0 100 60"><path d="M18,48 A32,32 0 0 1 82,48 Z" fill="#FFF8EE" stroke="#E0CCA8" stroke-width="2"/><path d="M50,48 L74,48 A24,24 0 0 0 67,31 Z" fill="#FFE8CC"/><line x1="50" y1="48" x2="86" y2="48" stroke="#7A5A38" stroke-width="3"/><line x1="50" y1="48" x2="75" y2="23" stroke="#E03131" stroke-width="3"/><circle cx="75" cy="23" r="5" fill="#E03131"/></svg><div class="cap"><b>角をつくる</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m19"><svg viewBox="0 0 100 60"><rect x="8" y="14" width="22" height="22" fill="#B197FC" stroke="#5F3DC4" stroke-width="2"/><g stroke="#5F3DC4" stroke-width="1" opacity=".5"><line x1="8" y1="25" x2="30" y2="25"/><line x1="19" y1="14" x2="19" y2="36"/></g><g fill="#4DABF7" stroke="#1864AB" stroke-width="2"><rect x="42" y="14" width="7" height="22"/><rect x="53" y="14" width="7" height="22"/></g><g fill="#FFA94D" stroke="#B4551E" stroke-width="2"><circle cx="76" cy="19" r="5"/><circle cx="90" cy="19" r="5"/><circle cx="76" cy="32" r="5"/></g><text x="19" y="52" font-size="10" fill="#8A6A48" text-anchor="middle">百</text><text x="51" y="52" font-size="10" fill="#8A6A48" text-anchor="middle">十</text><text x="83" y="52" font-size="10" fill="#8A6A48" text-anchor="middle">一</text></svg><div class="cap"><b>くらい</b><span class="chip">ひらく</span></div></div>
+    <div class="card" data-s="m20"><svg viewBox="0 0 100 60"><g fill="#E8A54B" stroke="#B4551E" stroke-width="1.5"><circle cx="20" cy="16" r="7"/><circle cx="38" cy="16" r="7"/><circle cx="56" cy="16" r="7"/></g><g stroke="#8A6A48" stroke-width="2.5" fill="none"><path d="M8,46 a12,5 0 0 0 24,0"/><path d="M38,46 a12,5 0 0 0 24,0"/><path d="M68,46 a12,5 0 0 0 24,0"/></g><g fill="#E8A54B" stroke="#B4551E" stroke-width="1.5"><circle cx="20" cy="40" r="6"/><circle cx="50" cy="40" r="6"/><circle cx="80" cy="40" r="6"/></g></svg><div class="cap"><b>わりざん</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m1"><svg viewBox="0 0 100 60"><g fill="#FA5252"><circle cx="14" cy="18" r="7"/><circle cx="34" cy="18" r="7"/><circle cx="54" cy="18" r="7"/></g><g fill="none" stroke="#E0CCA8" stroke-width="2" stroke-dasharray="4 3"><circle cx="74" cy="18" r="7"/><circle cx="14" cy="42" r="7"/><circle cx="34" cy="42" r="7"/></g></svg><div class="cap"><b>かぞえる</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m2"><svg viewBox="0 0 100 60"><g fill="#FA5252"><rect x="10" y="22" width="14" height="14" rx="4"/><rect x="27" y="22" width="14" height="14" rx="4"/></g><text x="50" y="36" font-size="18" fill="#8A6A48">＋</text><g fill="#339AF0"><rect x="62" y="22" width="14" height="14" rx="4"/><rect x="79" y="22" width="14" height="14" rx="4"/></g></svg><div class="cap"><b>たしざん</b><span class="chip">ひらく</span></div></div>
     <div class="card" data-s="m3"><svg viewBox="0 0 100 60"><g fill="#F783AC"><circle cx="14" cy="30" r="7"/><circle cx="32" cy="30" r="7"/><circle cx="50" cy="30" r="7"/></g><g fill="#4DABF7"><circle cx="68" cy="30" r="7"/><circle cx="86" cy="30" r="7"/></g></svg><div class="cap"><b>10のなかま</b><span class="chip">ひらく</span></div></div>
@@ -108,6 +111,39 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
     <div class="card" data-s="m6"><svg viewBox="0 0 100 60"><line x1="8" y1="40" x2="92" y2="40" stroke="#CBB79A" stroke-width="4"/><g stroke="#CBB79A" stroke-width="2"><line x1="20" y1="33" x2="20" y2="47"/><line x1="40" y1="33" x2="40" y2="47"/><line x1="60" y1="33" x2="60" y2="47"/><line x1="80" y1="33" x2="80" y2="47"/></g><text x="40" y="30" font-size="16" text-anchor="middle">🐸</text></svg><div class="cap"><b>すうちょくせん</b><span class="chip">ひらく</span></div></div>
   </div>
   <a class="drill" href="drill.html">✏️ もんだいに ちょうせんする →</a>
+</div>
+
+<div class="screen" id="m18">
+  <div class="top"><button>← もどる</button><h2>📐 角をつくる</h2></div>
+  <p class="hint">あかい ぼうを うごかして、角を つくってみよう</p>
+  <div class="panel"><svg id="m18svg" viewBox="0 0 600 340" style="width:100%;display:block;touch-action:none"></svg></div>
+  <div class="eq" id="m18eq" style="font-size:1.6rem"></div>
+  <div class="nbtn"><button id="m18m">‹</button><span id="m18v">60°</span><button id="m18p">›</button></div>
+  <div class="tgl" style="margin-top:12px"><button class="bbtn" id="m18q">🎲 もんだい</button></div>
+</div>
+
+<div class="screen" id="m19">
+  <div class="top"><button>← もどる</button><h2>🔢 くらい</h2></div>
+  <p class="hint">タッチで 1こ ふやす。10こ たまると 1つ 左へ くり上がるよ</p>
+  <div class="panel"><svg id="m19svg" viewBox="0 0 600 330" style="width:100%;display:block;touch-action:none"></svg></div>
+  <div class="big" id="m19n">0</div>
+  <div class="eq" id="m19eq" style="font-size:1.3rem"></div>
+  <div class="panel" style="margin-top:12px">
+    <div class="tgl"><button class="bbtn" id="m19add">➕ ふやす</button><button class="bbtn off" id="m19del">➖ へらす</button></div>
+    <div class="tgl"><button class="bbtn off" id="m19rst" style="flex:0 0 40%">↺ 0に もどす</button></div>
+  </div>
+</div>
+
+<div class="screen" id="m20">
+  <div class="top"><button>← もどる</button><h2>🍪 わりざん</h2></div>
+  <p class="hint">おさらに 1こずつ くばると、1さらぶんが 答えだよ</p>
+  <div class="panel"><svg id="m20svg" viewBox="0 0 600 330" style="width:100%;display:block;touch-action:none"></svg></div>
+  <div class="eq" id="m20eq" style="font-size:1.6rem"></div>
+  <div class="panel" style="margin-top:12px">
+    <div class="ctl"><label>クッキー</label><input type="range" id="m20n" min="1" max="20" step="1" value="12"><b><span id="m20nv">12</span>こ</b></div>
+    <div class="ctl"><label>おさら</label><input type="range" id="m20p" min="1" max="6" step="1" value="3"><b><span id="m20pv">3</span>まい</b></div>
+    <div class="tgl"><button class="bbtn" id="m20go">▶ くばる</button><button class="bbtn off" id="m20rst">↺ もどす</button></div>
+  </div>
 </div>
 
 <div class="screen" id="m1">
@@ -778,6 +814,138 @@ $("m17add").onclick=()=>{A17.mode=1;$("m17add").classList.remove("off");$("m17de
 $("m17del").onclick=()=>{A17.mode=-1;$("m17del").classList.remove("off");$("m17add").classList.add("off")};
 [["m17x","x","m17xv"],["m17y","y","m17yv"],["m17z","z","m17zv"]].forEach(([id,k,lab])=>$(id).oninput=e=>{A17[k]=+e.target.value;$(lab).textContent=A17[k];m17reset()});
 m17reset();
+
+/* m18 角をつくる —— 分度器の上で あかい ぼうを ドラッグ。もんだいモードあり */
+const AG={a:60,q:null,ok:false};
+const A18={x:300,y:284},AR=214;
+function ptA(a,r){const t=a*Math.PI/180;return[A18.x+r*Math.cos(t),A18.y-r*Math.sin(t)]}
+function m18draw(){
+  const a=AG.a;
+  let h=`<path d="M ${A18.x-AR} ${A18.y} A ${AR} ${AR} 0 0 1 ${A18.x+AR} ${A18.y} Z" fill="#FFFBF2" stroke="#E0CCA8" stroke-width="2"/>`;
+  let tk="";
+  for(let d=0;d<=180;d+=5){const big=d%30===0,mid=d%10===0;
+    const[x1,y1]=ptA(d,AR-(big?24:mid?15:9)),[x2,y2]=ptA(d,AR);
+    tk+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#CBB79A" stroke-width="${big?2.5:1.4}"/>`;
+    if(big){const[tx,ty]=ptA(d,AR-42),dy=(d===0||d===180)?-9:5;/* 0と180は 基準の線を よける */
+      tk+=`<text x="${tx}" y="${ty+dy}" font-size="14" fill="#A98F6F" text-anchor="middle" stroke="#FFFBF2" stroke-width="4" paint-order="stroke">${d}</text>`}}
+  if(AG.q!==null){const[gx,gy]=ptA(AG.q,AR-8);h+=`<line x1="${A18.x}" y1="${A18.y}" x2="${gx}" y2="${gy}" stroke="#ADB5BD" stroke-width="4" stroke-dasharray="9 8" stroke-linecap="round"/>`}
+  const WR=76,[wx,wy]=ptA(a,WR);
+  h+=`<path d="M ${A18.x} ${A18.y} L ${A18.x+WR} ${A18.y} A ${WR} ${WR} 0 ${a>180?1:0} 0 ${wx} ${wy} Z" fill="#FFE8CC" stroke="#E8590C" stroke-width="2"/>`;
+  if(Math.abs(a-90)<0.5)h+=`<path d="M ${A18.x+26} ${A18.y} L ${A18.x+26} ${A18.y-26} L ${A18.x} ${A18.y-26}" fill="none" stroke="#E8590C" stroke-width="3"/>`;
+  h+=`<line x1="${A18.x}" y1="${A18.y}" x2="${A18.x+AR-8}" y2="${A18.y}" stroke="#7A5A38" stroke-width="6" stroke-linecap="round"/>`;
+  const[hx,hy]=ptA(a,AR-8);
+  h+=`<line x1="${A18.x}" y1="${A18.y}" x2="${hx}" y2="${hy}" stroke="#E03131" stroke-width="6" stroke-linecap="round"/>`;
+  h+=tk;
+  h+=`<circle cx="${hx}" cy="${hy}" r="14" fill="#E03131" stroke="#fff" stroke-width="3"/>`;
+  h+=`<circle cx="${A18.x}" cy="${A18.y}" r="7" fill="#4A3B2C"/>`;
+  $("m18svg").innerHTML=h;
+  $("m18v").textContent=a+"°";
+  const nm=a===90?"ちょくかく！":a<90?"するどい かど":"にぶい かど";
+  if(AG.q===null)$("m18eq").innerHTML=`<span style="color:#E8590C">${a}°</span>　${nm}`;
+  else if(a===AG.q)$("m18eq").innerHTML=`<span style="color:#2F9E44">⭕ ${a}° ぴったり！</span>`;
+  else $("m18eq").innerHTML=`${AG.q}° を つくろう！　いま <span style="color:#E8590C">${a}°</span>`;
+}
+function m18set(v){AG.a=Math.max(0,Math.min(180,Math.round(v)));
+  if(AG.q!==null&&AG.a===AG.q){if(!AG.ok){AG.ok=true;snd(true);setTimeout(()=>{if(AG.ok)m18newq()},1800)}}else AG.ok=false;
+  m18draw()}
+function m18newq(){AG.q=[30,45,60,90,120,135,150][Math.floor(Math.random()*7)];AG.ok=false;$("m18q").textContent="🎲 つぎの もんだい";m18draw()}
+function m18xy(e){const rc=$("m18svg").getBoundingClientRect();return[(e.clientX-rc.left)/rc.width*600,(e.clientY-rc.top)/rc.height*340]}
+let a18drag=false;
+function m18pt(e){const[x,y]=m18xy(e);const d=Math.atan2(A18.y-y,x-A18.x)*180/Math.PI;m18set(d<0?(x<A18.x?180:0):d)}
+$("m18svg").onpointerdown=e=>{a18drag=true;$("m18svg").setPointerCapture(e.pointerId);m18pt(e)};
+$("m18svg").onpointermove=e=>{if(a18drag)m18pt(e)};
+$("m18svg").onpointerup=()=>a18drag=false;
+$("m18p").onclick=()=>m18set(AG.a+1);
+$("m18m").onclick=()=>m18set(AG.a-1);
+$("m18q").onclick=()=>m18newq();
+m18draw();
+
+/* m19 くらい —— 一/十/百のブロック。10たまると くり上がり、たりなければ くり下がり */
+const PL={h:0,t:0,o:0,mode:1,fx:0};
+const P19=[{k:"h",x:40,lab:"百のくらい"},{k:"t",x:230,lab:"十のくらい"},{k:"o",x:420,lab:"一のくらい"}];
+function m19draw(){
+  let h="";
+  P19.forEach(c=>{
+    const n=PL[c.k];
+    h+=`<rect x="${c.x}" y="20" width="140" height="252" rx="16" fill="#FFFBF2" stroke="${PL.fx===c.k?"#E8590C":"#EFE0C6"}" stroke-width="${PL.fx===c.k?4:3}" data-k="${c.k}" style="cursor:pointer"/>`;
+    h+=`<text x="${c.x+70}" y="298" font-size="17" font-weight="bold" fill="#7A5A38" text-anchor="middle" style="pointer-events:none">${c.lab}</text>`;
+    h+=`<text x="${c.x+70}" y="${318}" font-size="15" fill="#B4551E" text-anchor="middle" font-weight="bold" style="pointer-events:none">${n}こ</text>`;
+    const g=`pointer-events:none`;
+    if(c.k==="o"){for(let i=0;i<n;i++){const cx=c.x+42+(i%2)*56,cy=250-Math.floor(i/2)*46;
+      h+=`<circle cx="${cx}" cy="${cy}" r="19" fill="#FFA94D" stroke="#B4551E" stroke-width="2.5" style="${g}"/>`}}
+    else if(c.k==="t"){for(let i=0;i<n;i++){const x=c.x+12+i*14;
+      h+=`<rect x="${x}" y="32" width="11" height="228" rx="3" fill="#4DABF7" stroke="#1864AB" stroke-width="2" style="${g}"/>`;
+      for(let j=1;j<10;j++)h+=`<line x1="${x}" y1="${32+j*22.8}" x2="${x+11}" y2="${32+j*22.8}" stroke="#1864AB" stroke-width="1" opacity=".45" style="${g}"/>`}}
+    else{for(let i=0;i<n;i++){const px=c.x+12+(i%3)*42,py=226-Math.floor(i/3)*46;/* 10×10で 百 */
+      h+=`<rect x="${px}" y="${py}" width="40" height="40" rx="3" fill="#B197FC" stroke="#5F3DC4" stroke-width="2" style="${g}"/>`;
+      for(let j=1;j<10;j++)h+=`<line x1="${px}" y1="${py+j*4}" x2="${px+40}" y2="${py+j*4}" stroke="#5F3DC4" stroke-width=".7" opacity=".45" style="${g}"/><line x1="${px+j*4}" y1="${py}" x2="${px+j*4}" y2="${py+40}" stroke="#5F3DC4" stroke-width=".7" opacity=".45" style="${g}"/>`}}
+  });
+  $("m19svg").innerHTML=h;
+  const v=PL.h*100+PL.t*10+PL.o;
+  $("m19n").textContent=v;
+  $("m19eq").innerHTML=`百が ${PL.h}こ ・ 十が ${PL.t}こ ・ 一が ${PL.o}こ`;
+}
+function m19flash(k){PL.fx=k;m19draw();setTimeout(()=>{PL.fx=0;m19draw()},420)}
+function m19val(){return PL.h*100+PL.t*10+PL.o}
+function m19tap(k){
+  const d=k==="o"?1:k==="t"?10:100,v=m19val();
+  if(PL.mode===1){
+    if(v+d>999)return;/* 3けたまで */
+    PL[k]++;
+    if(PL.o>9){PL.o-=10;PL.t++;snd(true);m19flash("t")}
+    if(PL.t>9){PL.t-=10;PL.h++;snd(true);m19flash("h")}
+  }else{
+    if(v<d)return;/* たりないので なにもしない */
+    if(PL[k]>0)PL[k]--;
+    else if(k==="o"){if(PL.t===0){PL.h--;PL.t=10}PL.t--;PL.o=9;snd(false);m19flash("o")}
+    else{PL.h--;PL.t=9;snd(false);m19flash("t")}
+  }
+  m19draw();
+}
+$("m19svg").onclick=e=>{const k=e.target.dataset&&e.target.dataset.k;if(k)m19tap(k)};
+$("m19add").onclick=()=>{PL.mode=1;$("m19add").classList.remove("off");$("m19del").classList.add("off")};
+$("m19del").onclick=()=>{PL.mode=-1;$("m19del").classList.remove("off");$("m19add").classList.add("off")};
+$("m19rst").onclick=()=>{PL.h=PL.t=PL.o=0;m19draw()};
+m19draw();
+
+/* m20 わりざん —— 1こずつ 順ぐりに くばる。のこりが あまり */
+const DV={n:12,p:3,d:0,run:false};
+function dvFit(){return DV.n-DV.n%DV.p}
+function m20draw(){
+  const n=DV.n,p=DV.p,fit=dvFit(),rem=n-fit,d=Math.min(DV.d,fit),q=Math.floor(n/p);
+  const PW=560/p,py=252;
+  const plateW=Math.min(PW*.84,200);           /* おさらが 少ないときは 大きすぎないように */
+  const rows=Math.max(1,Math.ceil(q/3));
+  const rowH=Math.min(32,200/rows);
+  const R=Math.min(17,rowH*.52,plateW/7.2);    /* 1さらに たくさんのるほど 小さく */
+  let h="";
+  for(let j=0;j<p;j++){const cx=20+PW*(j+.5);
+    h+=`<path d="M ${cx-plateW/2} ${py} a ${plateW/2} ${plateW*.16} 0 0 0 ${plateW} 0" fill="#F5EAD6" stroke="#8A6A48" stroke-width="3"/>`}
+  const pileW=R*2.4,per=Math.min(8,Math.max(1,Math.floor(520/pileW)));
+  for(let i=0;i<n;i++){
+    let cx,cy;const left=i>=fit&&d>=fit;/* おわるまでは あまりだと 見せない */
+    if(i<d){const j=i%p,slot=Math.floor(i/p),col=slot%3,row=Math.floor(slot/3),cnt=Math.min(3,q-row*3);
+      cx=20+PW*(j+.5)+(col-(cnt-1)/2)*R*2.1;cy=py-R-4-row*rowH}
+    else if(left){cx=300+(i-fit-(rem-1)/2)*R*2.6;cy=136}  /* くばれなかったぶん */
+    else{const k=i-d,col=k%per,row=Math.floor(k/per),cnt=Math.min(per,n-d-row*per);
+      cx=300+(col-(cnt-1)/2)*pileW;cy=48+row*pileW}
+    h+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="${left?"#FFD8A8":"#E8A54B"}" stroke="#B4551E" stroke-width="${left?3:2}" ${left?'stroke-dasharray="6 5"':''}/>`;
+    const cr=R*.15;
+    h+=`<g fill="#B4551E" opacity=".55"><circle cx="${cx-R*.3}" cy="${cy-R*.24}" r="${cr}"/><circle cx="${cx+R*.35}" cy="${cy+R*.06}" r="${cr}"/><circle cx="${cx-R*.06}" cy="${cy+R*.41}" r="${cr}"/></g>`;
+  }
+  if(rem>0&&d>=fit)h+=`<text x="300" y="180" font-size="17" font-weight="bold" fill="#B4551E" text-anchor="middle">↑ くばれない ${rem}こ ＝ あまり</text>`;
+  $("m20svg").innerHTML=h;
+  if(d<fit)$("m20eq").innerHTML=`くばった <span style="color:#E8590C">${d}こ</span>　のこり ${n-d}こ`;
+  else $("m20eq").innerHTML=`${n} ÷ ${p} ＝ <span style="color:#E8590C">${q}</span>${rem?` あまり <span style="color:#E8590C">${rem}</span>`:""}　（1さらに ${q}こ）`;
+}
+function m20one(){if(DV.d<dvFit()){DV.d++;m20draw();if(DV.d>=dvFit()){DV.run=false;snd(true)}}else DV.run=false}
+setInterval(()=>{if(DV.run&&$("m20").style.display==="block")m20one()},260);
+$("m20svg").onclick=()=>{DV.run=false;m20one()};
+$("m20go").onclick=()=>{if(DV.d>=dvFit())DV.d=0;DV.run=true;m20draw()};
+$("m20rst").onclick=()=>{DV.d=0;DV.run=false;m20draw()};
+$("m20n").oninput=e=>{DV.n=+e.target.value;$("m20nv").textContent=DV.n;DV.d=0;DV.run=false;m20draw()};
+$("m20p").oninput=e=>{DV.p=+e.target.value;$("m20pv").textContent=DV.p;DV.d=0;DV.run=false;m20draw()};
+m20draw();
 </script>
 </body>
 </html>
