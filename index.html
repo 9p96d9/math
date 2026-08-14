@@ -267,7 +267,7 @@ h1{font-size:1.4rem;text-align:center;padding:20px 10px 6px;color:#7A5A38}
 <div class="screen" id="m14">
   <div class="top"><button>← もどる</button><h2>📐 図形の角</h2></div>
   <p class="hint">あかい ● を うごかして 形を かえてみよう。かどの和は…？</p>
-  <div class="panel"><svg id="m14svg" viewBox="0 0 600 320" style="width:100%;display:block;touch-action:none"></svg></div>
+  <div class="panel"><svg id="m14svg" viewBox="0 0 600 386" style="width:100%;display:block;touch-action:none"></svg></div>
   <div class="eq" id="m14sum" style="font-size:1.6rem"></div>
   <div class="tgl" style="margin-top:10px"><button class="bbtn" id="m14tear">✂️ ちぎって ならべる</button></div>
   <div class="nbtn"><button id="m14m">‹</button><span id="m14n">5かく</span><button id="m14p">›</button></div>
@@ -471,8 +471,11 @@ function c10draw(){
   const rolled=C.th*C.d/2,ratio=C.d?rolled/C.d:0;
   let h=`<line x1="10" y1="${CY}" x2="590" y2="${CY}" stroke="#8A6A48" stroke-width="3"/>`;
   if(C.th>0.02)h+=`<line x1="${CX0}" y1="${CY+14}" x2="${CX0+C.th*r}" y2="${CY+14}" stroke="#1C7ED6" stroke-width="7" stroke-linecap="round"/>`;
-  for(let k=1;k<=3;k++){const x=CX0+k*C.d*PXCM;if(x<590)h+=`<line x1="${x}" y1="${CY+6}" x2="${x}" y2="${CY+24}" stroke="#8A6A48" stroke-width="2"/><text x="${x}" y="${CY+40}" font-size="12" fill="#8A6A48" text-anchor="middle">直径×${k}</text>`}
   const xp=CX0+3.14159*C.d*PXCM;
+  const wide=C.d*PXCM>=100;/* めもりが せまいときは「直径」を省いて かさなりを防ぐ */
+  for(let k=1;k<=3;k++){const x=CX0+k*C.d*PXCM;if(x>=590)continue;
+    const near=Math.abs(x-xp)<50,tx=near?x-6:x,anc=near?"end":"middle";
+    h+=`<line x1="${x}" y1="${CY+6}" x2="${x}" y2="${CY+24}" stroke="#8A6A48" stroke-width="2"/><text x="${tx}" y="${CY+40}" font-size="12" fill="#8A6A48" text-anchor="${anc}">${wide?"直径":""}×${k}</text>`}
   h+=`<line x1="${xp}" y1="${CY+6}" x2="${xp}" y2="${CY+36}" stroke="#E03131" stroke-width="3"/><text x="${xp}" y="${CY+56}" font-size="13" font-weight="bold" fill="#E03131" text-anchor="middle">×3.14</text>`;
   h+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#D0EBFF" stroke="#1971C2" stroke-width="4"/>`;
   const px=cx-r*Math.sin(C.th),py=cy+r*Math.cos(C.th);
@@ -655,7 +658,14 @@ m15draw();
 const PG={n:5,pts:[],drag:-1,tear:0,tt:0,cheer:false};
 function nrm(v){const l=Math.hypot(v[0],v[1])||1;return[v[0]/l,v[1]/l]}
 function pgInit(){PG.pts=[];PG.tear=0;PG.tt=0;PG.cheer=false;for(let i=0;i<PG.n;i++){const a=i/PG.n*2*Math.PI-Math.PI/2;PG.pts.push([300+108*Math.cos(a),150+108*Math.sin(a)])}
-  $("m14n").textContent=PG.n+"かく";$("m14tear").style.display=PG.n<=4?"":"none";$("m14tear").textContent="✂️ ちぎって ならべる";m14draw()}
+  $("m14n").textContent=PG.n+"かく";$("m14tear").textContent="✂️ ちぎって ならべる";m14draw()}
+const M14CY=314;/* かどを あつめる 場所 */
+function pgMsg(deg){/* 180°=一直線、それ以上は 何しゅう分かで 言いかえる */
+  if(deg===180)return"ぴったり 一直線！＝180°";
+  const lap=Math.floor(deg/360),rest=deg-lap*360;
+  if(rest===0)return`ぐるっと ${lap}しゅう！＝${deg}°`;
+  if(rest===180)return`${lap}しゅう と はんぶん！＝${deg}°`;
+  return`あつめると ${deg}°`;}
 function m14draw(){
   const P=PG.pts,n=PG.n,t=PG.tear;
   let area=0;for(let i=0;i<n;i++){const a=P[i],b=P[(i+1)%n];area+=a[0]*b[1]-b[0]*a[1]}
@@ -671,20 +681,23 @@ function m14draw(){
     W.push({v,a0,th});
     h+=`<text x="${v[0]+42*Math.cos(am)}" y="${v[1]+42*Math.sin(am)+5}" font-size="15" font-weight="bold" fill="#B4551E" text-anchor="middle">${Math.round(th*180/Math.PI)}°</text>`;
   }
+  const deg=Math.round(sum*180/Math.PI);
   if(t>.5){const op=(t-.5)*2,r=22+12*t;
-    if(n===3)h+=`<line x1="150" y1="290" x2="450" y2="290" stroke="#7A5A38" stroke-width="4" opacity="${op}" stroke-linecap="round"/>`;
-    else h+=`<circle cx="300" cy="290" r="${r+4}" fill="none" stroke="#7A5A38" stroke-width="2.5" opacity="${op}" stroke-dasharray="6 6"/>`;
-    h+=`<text x="300" y="${n===3?258:242}" font-size="19" font-weight="bold" fill="#2F9E44" text-anchor="middle" opacity="${op}">${n===3?"ぴったり 一直線！＝180°":"ぐるっと 1しゅう！＝360°"}</text>`;
+    if(deg===180)h+=`<line x1="150" y1="${M14CY}" x2="450" y2="${M14CY}" stroke="#7A5A38" stroke-width="4" opacity="${op}" stroke-linecap="round"/>`;
+    else h+=`<circle cx="300" cy="${M14CY}" r="${r+4}" fill="none" stroke="#7A5A38" stroke-width="2.5" opacity="${op}" stroke-dasharray="6 6"/>`;
+    h+=`<text x="300" y="376" font-size="19" font-weight="bold" fill="#2F9E44" text-anchor="middle" opacity="${op}">${pgMsg(deg)}</text>`;
   }
   let prefix=0;
   W.forEach(w=>{
-    const r=22+12*t;
+    /* 360°を こえるぶんは 内がわの わっかに かさねる */
+    const lap=Math.floor((prefix+1e-6)/(2*Math.PI));
+    const r=(22+12*t)*(1-.22*lap*t);
     const ta0=o>0?Math.PI+prefix:2*Math.PI-prefix;
     let dd=ta0-w.a0;dd=((dd+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
     const phi=(w.a0+dd*t)*180/Math.PI;
-    const x=w.v[0]+(300-w.v[0])*t,y=w.v[1]+(290-w.v[1])*t;
+    const x=w.v[0]+(300-w.v[0])*t,y=w.v[1]+(M14CY-w.v[1])*t;
     let pts="0,0";for(let k=0;k<=16;k++){const a=o*w.th*k/16;pts+=` ${r*Math.cos(a)},${r*Math.sin(a)}`}
-    h+=`<g transform="translate(${x},${y}) rotate(${phi})"><polygon points="${pts}" fill="#FFA94D" fill-opacity=".7" stroke="#B4551E" stroke-width="1.5"/></g>`;
+    h+=`<g transform="translate(${x},${y}) rotate(${phi})"><polygon points="${pts}" fill="${lap?"#FFD8A8":"#FFA94D"}" fill-opacity=".75" stroke="#B4551E" stroke-width="1.5"/></g>`;
     prefix+=w.th;
   });
   if(t>.99&&!PG.cheer){PG.cheer=true;snd(true)}if(t<.5)PG.cheer=false;
@@ -692,7 +705,7 @@ function m14draw(){
   $("m14svg").innerHTML=h;
   $("m14sum").innerHTML=`かどの和 ＝ <span style="color:#E8590C">${Math.round(sum*180/Math.PI)}°</span>　いつも おなじ！`;
 }
-function m14xy(e){const rc=$("m14svg").getBoundingClientRect();return[(e.clientX-rc.left)/rc.width*600,(e.clientY-rc.top)/rc.height*320]}
+function m14xy(e){const rc=$("m14svg").getBoundingClientRect();return[(e.clientX-rc.left)/rc.width*600,(e.clientY-rc.top)/rc.height*386]}
 $("m14svg").onpointerdown=e=>{if(PG.tear>0.01)return;const[x,y]=m14xy(e);let bi=-1,bd=30;PG.pts.forEach((p,i)=>{const d=Math.hypot(p[0]-x,p[1]-y);if(d<bd){bd=d;bi=i}});PG.drag=bi;if(bi>=0)$("m14svg").setPointerCapture(e.pointerId)};
 $("m14svg").onpointermove=e=>{if(PG.drag<0)return;const[x,y]=m14xy(e);PG.pts[PG.drag]=[Math.max(20,Math.min(580,x)),Math.max(20,Math.min(240,y))];m14draw()};
 $("m14svg").onpointerup=()=>PG.drag=-1;
