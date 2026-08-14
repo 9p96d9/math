@@ -387,7 +387,7 @@ const STEP=0.1,TMAX=20;
 const rate=()=>(W.inR-(W.open?W.outR:0))/10; // cm/分（底面積10L/cm）
 function stepOnce(){W.lv=Math.min(20,Math.max(0,W.lv+rate()*STEP));W.hist.push(W.lv)}
 function m7t(){return (W.hist.length-1)*STEP}
-setInterval(()=>{if(!W.run||m7t()>=TMAX)return;W.acc+=0.1*W.spd;while(W.acc>=STEP-1e-9&&m7t()<TMAX){stepOnce();W.acc-=STEP}if(m7t()>=TMAX)W.run=false;m7draw()},100);
+setInterval(()=>{if(!W.run||m7t()>=TMAX||$("m7").style.display!=="block")return;W.acc+=0.1*W.spd;while(W.acc>=STEP-1e-9&&m7t()<TMAX){stepOnce();W.acc-=STEP}if(m7t()>=TMAX)W.run=false;m7draw()},100);
 function m7draw(){
   const t=m7t(),lv=W.lv,vol=lv*10;
   $("m7stat").textContent=`いま ${t.toFixed(1)}分 ・ すいい ${lv.toFixed(1)}cm ・ 水のりょう ${vol.toFixed(0)}`;
@@ -489,7 +489,7 @@ function m9draw(){
 }
 function train(x,y,L,col,label,hi){return`<rect x="${x}" y="${y}" width="${L*0.9}" height="26" rx="10" fill="${col}"${hi?' stroke="#FFD43B" stroke-width="4"':''}/><text x="${x+L*0.45}" y="${y+18}" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">${label}</text>`}
 function dot(x,y){return`<circle cx="${x}" cy="${y}" r="4" fill="#fff" stroke="#4A3B2C" stroke-width="1.5"/>`}
-setInterval(()=>{if(!T9.run)return;T9.t=Math.min(T9.Tend,T9.t+0.05*T9.spd);if(T9.t>=T9.Tend)T9.run=false;if($("m9").style.display==="block")m9draw()},50);
+setInterval(()=>{if(!T9.run||$("m9").style.display!=="block")return;T9.t=Math.min(T9.Tend,T9.t+0.05*T9.spd);if(T9.t>=T9.Tend)T9.run=false;if($("m9").style.display==="block")m9draw()},50);
 document.querySelectorAll(".m9mode").forEach(b=>b.onclick=()=>{T9.mode=b.dataset.m;document.querySelectorAll(".m9mode").forEach(x=>x.classList.toggle("off",x!==b));T9.t=0;T9.run=true;m9calc();m9draw()});
 const m9s=[["m9l1","L1","m9l1v"],["m9v1","V1","m9v1v"],["m9l2","L2","m9l2v"],["m9v2","V2","m9v2v"]];
 m9s.forEach(([id,k,lab])=>$(id).oninput=e=>{T9[k]=+e.target.value;$(lab).textContent=T9[k];m9calc();m9draw()});
@@ -521,7 +521,7 @@ function c10draw(){
   const done=C.th>=2*Math.PI-0.02;
   $("m10eq").innerHTML=done?`1しゅう ＝ ${rolled.toFixed(1)}cm ＝ 直径の <span style="color:#E03131">3.14ばい</span>！これが 円周率！`:`ころがった ながさ ${rolled.toFixed(1)}cm ＝ 直径 × ${ratio.toFixed(2)}`;
 }
-setInterval(()=>{if(!C.roll)return;C.th=Math.min(2*Math.PI,C.th+0.035);if(C.th>=2*Math.PI)C.roll=false;$("m10roll").textContent=C.roll?"⏸ とめる":"▶ ころがす";c10draw()},30);
+setInterval(()=>{if(!C.roll||$("m10").style.display!=="block")return;C.th=Math.min(2*Math.PI,C.th+0.035);if(C.th>=2*Math.PI)C.roll=false;$("m10roll").textContent=C.roll?"⏸ とめる":"▶ ころがす";c10draw()},30);
 $("m10roll").onclick=()=>{if(C.th>=2*Math.PI-0.02){C.th=0}C.roll=!C.roll;$("m10roll").textContent=C.roll?"⏸ とめる":"▶ ころがす"};
 $("m10rst").onclick=()=>{C.th=0;C.roll=false;$("m10roll").textContent="▶ ころがす";c10draw()};
 $("m10d").oninput=e=>{C.d=+e.target.value;$("m10dv").textContent=C.d;c10draw()};
@@ -545,7 +545,7 @@ SH["五角柱"]=(()=>{const v=[];for(const y of[.9,-.9])for(let i=0;i<5;i++){con
   const f=[[0,1,2,3,4],[9,8,7,6,5]];for(let i=0;i<5;i++)f.push([i,(i+1)%5,5+(i+1)%5,5+i]);return{v,f,cnt:[7,15,10]}})();
 /* 効果音（外部ファイルなし） */
 let AC=null;
-function snd(ok){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+(ok?.5:.12));o.type="sine";if(ok){o.frequency.setValueAtTime(784,t);o.frequency.setValueAtTime(1046,t+.15)}else o.frequency.setValueAtTime(600,t);o.start(t);o.stop(t+(ok?.5:.12))}catch(e){}}
+function snd(ok){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();const t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+(ok?.5:.12));o.type="sine";if(ok){o.frequency.setValueAtTime(784,t);o.frequency.setValueAtTime(1046,t+.15)}else o.frequency.setValueAtTime(600,t);o.start(t);o.stop(t+(ok?.5:.12))}catch(e){}}
 const S3={shape:"立方体",rx:-.45,ry:.65,spin:true};
 function m11draw(){
   const sh=SH[S3.shape],P=sh.v.map(p=>rot3(p,S3.rx,S3.ry));
@@ -656,7 +656,7 @@ document.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{B13[b.dataset.si
 $("m13c").onclick=()=>{B13.L=[];B13.R=[];m13draw()};
 $("m13q").onclick=()=>{B13.myst=2+Math.floor(Math.random()*11);B13.L=[];B13.R=[];B13.won=false;$("m13q").textContent="🎁 ちがう？にする";m13draw()};
 $("m13svg").onclick=e=>{const t=e.target,s=t.dataset&&t.dataset.side;if(s){B13[s].splice(+t.dataset.i,1);m13draw()}};
-setInterval(()=>{const sl=b13sum("L"),sr=b13sum("R");const tg=Math.max(-13,Math.min(13,(sr-sl)*2.2));if(Math.abs(tg-B13.cur)>.05&&$("m13").style.display==="block"){B13.cur+=(tg-B13.cur)*.13;m13draw()}},40);
+setInterval(()=>{if($("m13").style.display!=="block")return;const sl=b13sum("L"),sr=b13sum("R");const tg=Math.max(-13,Math.min(13,(sr-sl)*2.2));if(Math.abs(tg-B13.cur)>.05&&$("m13").style.display==="block"){B13.cur+=(tg-B13.cur)*.13;m13draw()}},40);
 m13draw();
 
 /* m15 とけい —— 長針ドラッグ、短針が連動（12時間=720分） */
