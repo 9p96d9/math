@@ -71,6 +71,21 @@ for (const name of names) {
   await page.waitForTimeout(60);
 }
 
+console.log("\n■ ホーム — 見出しと 学年バッジ");
+const homeInfo = await page.evaluate(() => {
+  const cards = [...document.querySelectorAll(".card")];
+  return {
+    noBadge: cards.filter((c) => !c.querySelector(".gr")).map((c) => c.querySelector(".cap b").textContent),
+    ungrouped: cards.filter((c) => !c.closest(".cards")?.previousElementSibling?.classList.contains("gsec"))
+      .map((c) => c.querySelector(".cap b").textContent),
+    sections: [...document.querySelectorAll(".gsec")].length,
+  };
+});
+ok(homeInfo.noBadge.length === 0, "全カードに 学年バッジが ある", homeInfo.noBadge.join(","));
+ok(homeInfo.ungrouped.length === 0, "全カードが 見出しの下に ある", homeInfo.ungrouped.join(","));
+ok(homeInfo.sections >= 4, `見出しが ${homeInfo.sections}こ ある`);
+await home();
+
 console.log("\n■ 円と円周率(m10) — ラベルが 赤い3.14の線と かさならない");
 await open("円と円周率");
 for (const d of [6, 8, 10, 12]) {
